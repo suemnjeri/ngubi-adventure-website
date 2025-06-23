@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff; /* Page background */
+            background-color: #F8F7F2; /* Page background, inspired by your logo's cream color */
         }
         
         #hero-section-background {
@@ -23,7 +23,6 @@
             z-index: -1;
             background-size: cover;
             background-position: center center;
-            /* CHANGE: Replaced placeholder with a real, high-quality stock photo */
             background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=1950&auto=format&fit=crop');
         }
 
@@ -32,7 +31,7 @@
         }
 
         .content-section {
-             background-color: #ffffff;
+             background-color: #F8F7F2;
         }
 
         .storybrand-button {
@@ -41,33 +40,50 @@
         .storybrand-button:hover {
             transform: scale(1.05);
         }
-
-        .event-card {
+        
+        /* NEW: Styling for both Service and Event Cards for consistency */
+        .image-card {
             position: relative;
             overflow: hidden;
             background-size: cover;
             background-position: center;
-            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: white;
+            padding: 2rem;
         }
-        .event-card-overlay {
+        .image-card-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.1));
-            transition: background 0.3s ease;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+            transition: background 0.4s ease;
         }
-        .event-card:hover .event-card-overlay {
-             background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3));
+        .image-card:hover .image-card-overlay {
+             background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
+        }
+        .image-card .card-content {
+            position: relative;
+            z-index: 10;
+            transition: transform 0.4s ease;
+        }
+        .image-card:hover .card-content {
+            transform: translateY(-10px);
         }
 
+
     </style>
+    <!-- CHANGE: Updated color palette based on your logo and t-shirt images -->
     <script>
         tailwind.config = {
           theme: {
             extend: {
               colors: {
-                'brand-green': '#2C5F2D',
-                'brand-lime': '#97FB57',
-                'brand-dark': '#222222',
+                'brand-green-dark': '#2a3d33', /* From logo */
+                'brand-green-light': '#84BD00', /* A vibrant lime from hoodie */
+                'brand-brown': '#693B14', /* From logo */
+                'brand-cream': '#F8F7F2', /* From logo background */
+                'brand-dark': '#1c1c1c',
               }
             }
           }
@@ -84,23 +100,24 @@
                 NGUBI ADVENTURE
             </a>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#services" class="font-semibold hover:text-brand-lime">Our Experiences</a>
-                <a href="#events" class="font-semibold hover:text-brand-lime">Upcoming Events</a>
-                <a href="#about" class="font-semibold hover:text-brand-lime">Our Story</a>
+                <a href="#services" class="font-semibold hover:text-brand-green-light">Our Experiences</a>
+                <a href="#events" class="font-semibold hover:text-brand-green-light">Upcoming Events</a>
+                <a href="#about" class="font-semibold hover:text-brand-green-light">Our Story</a>
             </div>
-            <a href="#booking" class="bg-brand-lime text-brand-dark font-bold py-2 px-6 storybrand-button hidden md:inline-block">
+            <!-- CHANGE: Updated booking button color -->
+            <a href="#booking" class="bg-brand-green-light text-brand-dark font-bold py-2 px-6 storybrand-button hidden md:inline-block">
                 Book Now
             </a>
             <button id="mobile-menu-button" class="md:hidden focus:outline-none">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-green">
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-green-dark">
             <a href="#services" class="block py-3 px-6 font-semibold">Our Experiences</a>
             <a href="#events" class="block py-3 px-6 font-semibold">Upcoming Events</a>
             <a href="#about" class="block py-3 px-6 font-semibold">Our Story</a>
             <div class="p-4">
-                 <a href="#booking" class="bg-brand-lime text-brand-dark font-bold py-3 px-6 w-full text-center block">
+                 <a href="#booking" class="bg-brand-green-light text-brand-dark font-bold py-3 px-6 w-full text-center block">
                     Book Now
                 </a>
             </div>
@@ -116,7 +133,7 @@
             <p class="text-lg md:text-xl max-w-3xl mb-8">
                 You shouldn't have to sacrifice your health because of a busy schedule. We help you gain control of your health and become part of a supportive community in nature.
             </p>
-            <a href="#services" class="bg-brand-lime text-brand-dark font-bold py-4 px-10 text-xl storybrand-button">
+            <a href="#services" class="bg-brand-green-light text-brand-dark font-bold py-4 px-10 text-xl storybrand-button">
                 Explore Experiences
             </a>
         </div>
@@ -125,43 +142,41 @@
     <div class="content-section relative z-10">
         <main class="container mx-auto px-6 py-24">
             
-            <section id="services" class="text-center mb-24">
-                <h2 class="text-3xl font-bold mb-4">Choose Your Adventure</h2>
-                <p class="max-w-2xl mx-auto text-gray-600 mb-12">We have an experience designed for you, whether you're a corporate team, a family, or a weekend fitness warrior.</p>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- CHANGE: Re-designed this entire section for a more visual, compact feel -->
+            <section id="services" class="mb-24">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Choose Your Adventure</h2>
+                    <p class="max-w-2xl mx-auto text-gray-600">We have an experience designed for you, whether you're a corporate team, a family, or a weekend fitness warrior.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Service 1: Team Adventure Package -->
-                    <div class="bg-gray-100 shadow-md">
-                        <!-- CHANGE: Replaced placeholder with a real stock photo -->
-                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop" alt="A group of people collaborating outdoors" class="w-full h-48 object-cover">
-                        <div class="p-6 text-left">
-                            <h3 class="text-xl font-bold mb-2">Team Adventure Package</h3>
-                            <p class="text-gray-600 mb-4">Our all-inclusive package for groups. Includes guided teambuilding, obstacle course, the Ngubi Trail Quest, and a private picnic area.</p>
-                            <a href="#" class="font-bold text-brand-green hover:underline">Request a Quote &rarr;</a>
+                    <a href="#" class="image-card" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop');">
+                        <div class="image-card-overlay"></div>
+                        <div class="card-content">
+                            <h3 class="text-2xl font-extrabold">Team Adventure Package</h3>
+                            <p class="font-semibold mt-2">All-inclusive packages for groups.</p>
                         </div>
-                    </div>
+                    </a>
                     <!-- Service 2: Day Adventure Pass -->
-                    <div class="bg-gray-100 shadow-md">
-                        <!-- CHANGE: Replaced placeholder with a real stock photo -->
-                        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop" alt="A person hiking in a beautiful landscape" class="w-full h-48 object-cover">
-                        <div class="p-6 text-left">
-                            <h3 class="text-xl font-bold mb-2">Day Adventure Pass</h3>
-                            <p class="text-gray-600 mb-4">Your ticket to a perfect day out. Start with a Conservation Pass for picnics and trails, then add on activities like our obstacle course or Trail Quest.</p>
-                            <a href="#" class="font-bold text-brand-green hover:underline">Plan Your Day &rarr;</a>
+                    <a href="#" class="image-card" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop');">
+                        <div class="image-card-overlay"></div>
+                        <div class="card-content">
+                            <h3 class="text-2xl font-extrabold">Day Adventure Pass</h3>
+                            <p class="font-semibold mt-2">Your ticket to a perfect day out.</p>
                         </div>
-                    </div>
+                    </a>
                     <!-- Service 3: Weekend Bootcamp -->
-                    <div class="bg-gray-100 shadow-md md:col-span-2 lg:col-span-1">
-                         <!-- CHANGE: Replaced placeholder with a real stock photo -->
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" alt="People exercising outdoors" class="w-full h-48 object-cover">
-                        <div class="p-6 text-left">
-                            <h3 class="text-xl font-bold mb-2">Weekend Bootcamp</h3>
-                            <p class="text-gray-600 mb-4">Join our powerful, 1.5-hour coached fitness session every Saturday. All-inclusive price for a transformative workout.</p>
-                            <a href="#" class="font-bold text-brand-green hover:underline">Reserve Your Spot &rarr;</a>
+                    <a href="#" class="image-card md:col-span-2 lg:col-span-1" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');">
+                        <div class="image-card-overlay"></div>
+                        <div class="card-content">
+                            <h3 class="text-2xl font-extrabold">Weekend Bootcamp</h3>
+                            <p class="font-semibold mt-2">Join our powerful coached fitness session.</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </section>
 
+            <!-- CHANGE: Refined Events section for a cleaner look -->
             <section id="events" class="mb-24">
                  <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold mb-4">Upcoming Events</h2>
@@ -169,37 +184,35 @@
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-1">
                      <!-- Event 1 -->
-                     <!-- CHANGE: Replaced placeholder with a real stock photo -->
-                    <a href="#" class="event-card group flex flex-col justify-end p-8 text-white" style="background-image: url('https://images.unsplash.com/photo-1572295743222-376e5954883e?q=80&w=2070&auto=format&fit=crop');">
-                        <div class="event-card-overlay"></div>
-                        <div class="relative z-10">
-                            <p class="text-sm font-semibold text-brand-lime mb-1">JULY 20, 2025</p>
-                            <h3 class="text-3xl font-black mb-4">Forest Trail Run</h3>
-                            <span class="border-2 border-brand-lime py-2 px-6 font-bold group-hover:bg-brand-lime group-hover:text-brand-dark transition-colors">
+                    <a href="#" class="image-card group" style="background-image: url('https://images.unsplash.com/photo-1572295743222-376e5954883e?q=80&w=2070&auto=format&fit=crop');">
+                        <div class="image-card-overlay"></div>
+                        <div class="card-content">
+                            <p class="text-sm font-semibold text-brand-green-light mb-1">JULY 20, 2025</p>
+                            <!-- Title size reduced -->
+                            <h3 class="text-2xl font-black mb-4">Forest Trail Run</h3>
+                            <span class="border-2 border-brand-green-light py-2 px-6 font-bold group-hover:bg-brand-green-light group-hover:text-brand-dark transition-colors">
                                 View Details
                             </span>
                         </div>
                     </a>
                     <!-- Event 2 -->
-                     <!-- CHANGE: Replaced placeholder with a real stock photo -->
-                    <a href="#" class="event-card group flex flex-col justify-end p-8 text-white" style="background-image: url('https://images.unsplash.com/photo-1544758394-e1d9354115e5?q=80&w=1974&auto=format&fit=crop');">
-                        <div class="event-card-overlay"></div>
-                        <div class="relative z-10">
-                            <p class="text-sm font-semibold text-brand-lime mb-1">AUGUST 17, 2025</p>
-                            <h3 class="text-3xl font-black mb-4">Mountain Bike Enduro</h3>
-                             <span class="border-2 border-brand-lime py-2 px-6 font-bold group-hover:bg-brand-lime group-hover:text-brand-dark transition-colors">
+                    <a href="#" class="image-card group" style="background-image: url('https://images.unsplash.com/photo-1544758394-e1d9354115e5?q=80&w=1974&auto=format&fit=crop');">
+                        <div class="image-card-overlay"></div>
+                        <div class="card-content">
+                            <p class="text-sm font-semibold text-brand-green-light mb-1">AUGUST 17, 2025</p>
+                            <h3 class="text-2xl font-black mb-4">Mountain Bike Enduro</h3>
+                             <span class="border-2 border-brand-green-light py-2 px-6 font-bold group-hover:bg-brand-green-light group-hover:text-brand-dark transition-colors">
                                 View Details
                             </span>
                         </div>
                     </a>
                      <!-- Event 3 -->
-                     <!-- CHANGE: Replaced placeholder with a real stock photo -->
-                    <a href="#" class="event-card group flex flex-col justify-end p-8 text-white md:col-span-2 lg:col-span-1" style="background-image: url('https://images.unsplash.com/photo-1515150144380-b28e483c3e41?q=80&w=1974&auto=format&fit=crop');">
-                        <div class="event-card-overlay"></div>
-                        <div class="relative z-10">
-                            <p class="text-sm font-semibold text-brand-lime mb-1">SEPTEMBER 14, 2025</p>
-                            <h3 class="text-3xl font-black mb-4">Community Tree Planting</h3>
-                             <span class="border-2 border-brand-lime py-2 px-6 font-bold group-hover:bg-brand-lime group-hover:text-brand-dark transition-colors">
+                    <a href="#" class="image-card group md:col-span-2 lg:col-span-1" style="background-image: url('https://images.unsplash.com/photo-1515150144380-b28e483c3e41?q=80&w=1974&auto=format&fit=crop');">
+                        <div class="image-card-overlay"></div>
+                        <div class="card-content">
+                            <p class="text-sm font-semibold text-brand-green-light mb-1">SEPTEMBER 14, 2025</p>
+                            <h3 class="text-2xl font-black mb-4">Community Tree Planting</h3>
+                             <span class="border-2 border-brand-green-light py-2 px-6 font-bold group-hover:bg-brand-green-light group-hover:text-brand-dark transition-colors">
                                 View Details
                             </span>
                         </div>
@@ -209,6 +222,7 @@
         </main>
     </div>
 
+    <!-- Footer -->
     <footer id="about" class="bg-brand-dark text-white content-section">
         <div class="container mx-auto px-6 py-12">
              <div class="grid md:grid-cols-4 gap-8">
@@ -265,10 +279,10 @@
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.remove('bg-transparent', 'text-white');
-                header.classList.add('bg-white/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
+                header.classList.add('bg-brand-cream/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
             } else {
                 header.classList.add('bg-transparent', 'text-white');
-                header.classList.remove('bg-white/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
+                header.classList.remove('bg-brand-cream/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
             }
         });
 
