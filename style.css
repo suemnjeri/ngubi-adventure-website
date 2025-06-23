@@ -59,3 +59,25 @@ body {
 .image-card:hover .card-content {
     transform: translateY(-10px);
 }
+
+/* NEW: General content styles for uniformity */
+.content-wrapper h2 {
+    font-size: 1.875rem; /* 30px */
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+.content-wrapper h3 {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.content-wrapper p, .content-wrapper li {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.75;
+    color: #4b5563; /* gray-600 */
+    margin-bottom: 1rem;
+}
+.content-wrapper ul {
+    list-style-position: inside;
+    list-style-type: disc;
+}
