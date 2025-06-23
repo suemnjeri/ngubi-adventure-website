@@ -1,6 +1,7 @@
+/* CHANGE: Updated font-family to Rubik */
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #4a392a; /* User's selected dark tan color for the page */
+    font-family: 'Rubik', sans-serif;
+    background-color: #4a392a; 
 }
 .storybrand-button {
     transition: all 0.2s ease-in-out;
@@ -60,7 +61,6 @@ body {
     transform: translateY(-10px);
 }
 
-/* NEW: General content styles for uniformity */
 .content-wrapper h2 {
     font-size: 1.875rem; /* 30px */
     font-weight: 800;
