@@ -7,72 +7,106 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #ffffff; /* Page background */
         }
-        /* Custom Tailwind Colors - We can define our brand palette here later */
-        /*
-        :root {
-            --brand-green: #1a472a;
-            --brand-orange: #f97316;
-        }
-        */
-        .hero-slide {
-            display: none;
-            position: absolute;
+        
+        /* NEW: Hero Section Styling for Fixed Background Effect */
+        #hero-section-background {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            height: 100vh;
+            z-index: -1;
+            background-size: cover;
+            background-position: center center;
+            background-image: url('https://placehold.co/1920x1080/2C5F2D/FFFFFF?text=Welcome+to+Ngubi+Forest');
         }
-        .hero-slide.active {
-            display: block;
-            opacity: 1;
-        }
+
         .hero-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.1));
+            background: rgba(0,0,0,0.5);
         }
+
+        .content-section {
+             background-color: #ffffff;
+        }
+
         .storybrand-button {
-            transition: all 0.3s ease;
+            transition: all 0.2s ease-in-out;
         }
         .storybrand-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: scale(1.05);
         }
+
+        /* NEW: Event Card Styling */
+        .event-card {
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+        }
+        .event-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.1));
+            transition: background 0.3s ease;
+        }
+        .event-card:hover .event-card-overlay {
+             background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3));
+        }
+
     </style>
+    <!-- NEW: Defining our brand colors from goape.com for easy use -->
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                'brand-green': '#2C5F2D',
+                'brand-lime': '#97FB57',
+                'brand-dark': '#222222',
+              }
+            }
+          }
+        }
+    </script>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="text-brand-dark">
+
+    <!-- This div holds the fixed background image for the hero section -->
+    <div id="hero-section-background"></div>
 
     <!-- Header & Navigation -->
-    <!-- CHANGE: Updated brand name and button colors -->
-    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <!-- CHANGE: Menu is now transparent and overlaid on the hero image -->
+    <header class="bg-transparent text-white fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-header">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-green-900">
-                Ngubi Adventure Forest Camp
+            <a href="#" class="text-2xl font-extrabold tracking-tight">
+                NGUBI ADVENTURE
             </a>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#services" class="text-gray-600 hover:text-green-800">Our Services</a>
-                <a href="#events" class="text-gray-600 hover:text-green-800">Upcoming Events</a>
-                <a href="#about" class="text-gray-600 hover:text-green-800">Our Story</a>
-                <a href="#contact" class="text-gray-600 hover:text-green-800">Contact</a>
+                <a href="#services" class="font-semibold hover:text-brand-lime">Our Services</a>
+                <a href="#events" class="font-semibold hover:text-brand-lime">Upcoming Events</a>
+                <a href="#about" class="font-semibold hover:text-brand-lime">Our Story</a>
             </div>
-            <a href="#booking" class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-6 rounded-lg shadow-lg storybrand-button hidden md:inline-block">
+            <a href="#booking" class="bg-brand-lime text-brand-dark font-bold py-2 px-6 storybrand-button hidden md:inline-block">
                 Book Now
             </a>
-            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
             </button>
         </nav>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#services" class="block py-2 px-6 text-sm text-gray-700">Our Services</a>
-            <a href="#events" class="block py-2 px-6 text-sm text-gray-700">Upcoming Events</a>
-            <a href="#about" class="block py-2 px-6 text-sm text-gray-700">Our Story</a>
-            <a href="#contact" class="block py-2 px-6 text-sm text-gray-700">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-green">
+            <a href="#services" class="block py-3 px-6 font-semibold">Our Services</a>
+            <a href="#events" class="block py-3 px-6 font-semibold">Upcoming Events</a>
+            <a href="#about" class="block py-3 px-6 font-semibold">Our Story</a>
             <div class="p-4">
-                 <a href="#booking" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg storybrand-button w-full text-center block">
+                 <a href="#booking" class="bg-brand-lime text-brand-dark font-bold py-3 px-6 w-full text-center block">
                     Book Now
                 </a>
             </div>
@@ -80,107 +114,111 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative h-[80vh] min-h-[500px] max-h-[700px] w-full overflow-hidden text-white">
-        <!-- Slideshow Container -->
-        <div id="hero-slider" class="absolute inset-0">
-            <!-- CHANGE: Updated placeholder images to be more relevant -->
-            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/1a472a/FFFFFF?text=Team+Adventure'); background-size: cover; background-position: center;"></div>
-            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/f97316/FFFFFF?text=Individual+Fitness'); background-size: cover; background-position: center;"></div>
-            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/6b7280/FFFFFF?text=Forest+Conservation'); background-size: cover; background-position: center;"></div>
-        </div>
+    <!-- CHANGE: This is now just the content, the background is handled separately -->
+    <section class="relative h-screen min-h-[600px] flex items-center justify-center text-white text-center">
         <div class="absolute inset-0 hero-overlay"></div>
-
-        <!-- Hero Content -->
-        <!-- CHANGE: Updated messaging from your StoryBrand documents -->
-        <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
-            <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.6);">
-                Feel Strong, Energized, and In Control
+        <div class="relative z-10 p-6">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight mb-4">
+                FEEL STRONG, ENERGIZED, AND IN CONTROL.
             </h1>
-            <p class="text-lg md:text-xl max-w-3xl mb-8" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
+            <p class="text-lg md:text-xl max-w-3xl mb-8">
                 You shouldn't have to sacrifice your health because of a busy schedule. We help you gain control of your health and become part of a supportive community in nature.
             </p>
-            <a href="#services" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-10 rounded-lg text-xl shadow-xl storybrand-button">
-                Book Your Adventure Now
+            <a href="#services" class="bg-brand-lime text-brand-dark font-bold py-4 px-10 text-xl storybrand-button">
+                Book Your Adventure
             </a>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-6 py-16">
-
-        <!-- Services Section -->
-        <section id="services" class="text-center mb-24">
-             <!-- CHANGE: Updated messaging from your StoryBrand documents -->
-            <h2 class="text-3xl font-bold mb-4">How We Guide You to Success</h2>
-            <p class="max-w-2xl mx-auto text-gray-600 mb-12">With expert trainers and a serene forest location, we’ve helped hundreds of participants build both mental and physical resilience.</p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1: Group Teambuilding -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/166534/FFFFFF?text=Group+Teambuilding" alt="Group of people doing a team building exercise" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Group Adventure & Teambuilding</h3>
-                        <p class="text-gray-600 mb-4">For teams that want to grow stronger together. Bond deeply and leave with experiences that boost morale and cohesion.</p>
-                        <a href="#" class="font-bold text-green-700 hover:text-green-900">Book Your Team Adventure &rarr;</a>
+    <!-- The rest of the page content will live in its own container to scroll over the background -->
+    <div class="content-section relative z-10">
+        <main class="container mx-auto px-6 py-24">
+            <!-- Services Section -->
+            <!-- CHANGE: Updated to use new color palette and sharp corners -->
+            <section id="services" class="text-center mb-24">
+                <h2 class="text-3xl font-bold mb-4">How We Guide You to Success</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 mb-12">With expert trainers and a serene forest location, we’ve helped hundreds of participants build both mental and physical resilience.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-gray-100 shadow-md">
+                        <img src="https://placehold.co/600x400/2C5F2D/FFFFFF?text=Team+Adventure" alt="Group Teambuilding" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Group Adventure & Teambuilding</h3>
+                            <p class="text-gray-600 mb-4">For teams that want to grow stronger together. Bond deeply and leave with experiences that boost morale and cohesion.</p>
+                            <a href="#" class="font-bold text-brand-green hover:underline">Book Your Team Adventure &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="bg-gray-100 shadow-md">
+                        <img src="https://placehold.co/600x400/97FB57/222222?text=Weekend+Fitness" alt="Weekend Bootcamp" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Individual Weekend Bootcamp</h3>
+                            <p class="text-gray-600 mb-4">For the busy individual who wants a stronger body and sharper mind. Join our supportive community every Saturday.</p>
+                            <a href="#" class="font-bold text-brand-green hover:underline">Reserve Your Spot &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="bg-gray-100 shadow-md md:col-span-2 lg:col-span-1">
+                        <img src="https://placehold.co/600x400/222222/FFFFFF?text=Trail+Quest" alt="Ngubi Trail Quest" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">The Ngubi Trail Quest</h3>
+                            <p class="text-gray-600 mb-4">A unique team challenge using maps and clues to discover the secrets of the forest. Perfect for groups and families.</p>
+                            <a href="#" class="font-bold text-brand-green hover:underline">Start the Quest &rarr;</a>
+                        </div>
                     </div>
                 </div>
-                <!-- Service 2: Weekend Bootcamp -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/c2410c/FFFFFF?text=Weekend+Bootcamp" alt="Individual on an obstacle course" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Individual Weekend Bootcamp</h3>
-                        <p class="text-gray-600 mb-4">For the busy individual who wants a stronger body and sharper mind. Join our supportive community every Saturday.</p>
-                        <a href="#" class="font-bold text-green-700 hover:text-green-900">Reserve Your Spot &rarr;</a>
-                    </div>
-                </div>
-                <!-- Service 3: Custom Events -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 md:col-span-2 lg:col-span-1">
-                    <img src="https://placehold.co/600x400/475569/FFFFFF?text=Private+Events" alt="A scenic view of the camp set up for a private event" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Custom & Private Events</h3>
-                        <p class="text-gray-600 mb-4">Host your own private event, retreat, or customized adventure. We'll help you plan the perfect day.</p>
-                        <a href="#" class="font-bold text-green-700 hover:text-green-900">Inquire Now &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Upcoming Events Section -->
-        <section id="events" class="bg-green-800 text-white rounded-2xl p-8 md:p-16 mb-24">
-            <div class="text-center">
-                <h2 class="text-3xl font-bold mb-4">Upcoming Events</h2>
-                <p class="max-w-2xl mx-auto opacity-90 mb-12">Challenge yourself and join our growing community at one of our special monthly events. Spaces are limited!</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Event 1 -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col">
-                    <img src="https://placehold.co/600x400/dc2626/FFFFFF?text=Trail+Run" alt="Trail Run Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
-                    <h3 class="text-xl font-bold mb-2">July Forest Trail Run</h3>
-                    <p class="text-sm opacity-80 mb-4 flex-grow">A scenic 10km run through the beautiful Ngubi Forest trails. All fitness levels welcome.</p>
-                    <a href="#" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">Register Now</a>
+            <!-- Upcoming Events Section -->
+            <!-- CHANGE: Completely new design for this section based on your feedback -->
+            <section id="events" class="mb-24">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Upcoming Events</h2>
+                    <p class="max-w-2xl mx-auto text-gray-600">Challenge yourself and join our growing community at one of our special monthly events. Spaces are limited!</p>
                 </div>
-                <!-- Event 2 -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col">
-                    <img src="https://placehold.co/600x400/16a34a/FFFFFF?text=Cycling+Race" alt="Cycling Race Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
-                    <h3 class="text-xl font-bold mb-2">Mountain Bike Enduro</h3>
-                    <p class="text-sm opacity-80 mb-4 flex-grow">Test your skills on our challenging downhill and cross-country mountain bike courses.</p>
-                    <a href="#" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">Book Your Spot</a>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-1">
+                     <!-- Event 1 -->
+                    <a href="#" class="event-card group flex flex-col justify-end p-8 text-white" style="background-image: url('https://placehold.co/800x1000/E53E3E/FFFFFF?text=Forest+Run');">
+                        <div class="event-card-overlay"></div>
+                        <div class="relative z-10">
+                            <p class="text-sm font-semibold text-brand-lime mb-1">JULY 20, 2025</p>
+                            <h3 class="text-3xl font-black mb-4">Forest Trail Run</h3>
+                            <span class="border-2 border-brand-lime py-2 px-6 font-bold group-hover:bg-brand-lime group-hover:text-brand-dark transition-colors">
+                                View Details
+                            </span>
+                        </div>
+                    </a>
+                    <!-- Event 2 -->
+                    <a href="#" class="event-card group flex flex-col justify-end p-8 text-white" style="background-image: url('https://placehold.co/800x1000/38A169/FFFFFF?text=Bike+Race');">
+                        <div class="event-card-overlay"></div>
+                        <div class="relative z-10">
+                            <p class="text-sm font-semibold text-brand-lime mb-1">AUGUST 17, 2025</p>
+                            <h3 class="text-3xl font-black mb-4">Mountain Bike Enduro</h3>
+                             <span class="border-2 border-brand-lime py-2 px-6 font-bold group-hover:bg-brand-lime group-hover:text-brand-dark transition-colors">
+                                View Details
+                            </span>
+                        </div>
+                    </a>
+                     <!-- Event 3 -->
+                    <a href="#" class="event-card group flex flex-col justify-end p-8 text-white md:col-span-2 lg:col-span-1" style="background-image: url('https://placehold.co/800x1000/4A5568/FFFFFF?text=Conservation');">
+                        <div class="event-card-overlay"></div>
+                        <div class="relative z-10">
+                            <p class="text-sm font-semibold text-brand-lime mb-1">SEPTEMBER 14, 2025</p>
+                            <h3 class="text-3xl font-black mb-4">Community Tree Planting</h3>
+                             <span class="border-2 border-brand-lime py-2 px-6 font-bold group-hover:bg-brand-lime group-hover:text-brand-dark transition-colors">
+                                View Details
+                            </span>
+                        </div>
+                    </a>
                 </div>
-                <!-- Event 3 -->
-                 <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col">
-                    <img src="https://placehold.co/600x400/4f46e5/FFFFFF?text=Conservation+Day" alt="Conservation Day Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
-                    <h3 class="text-xl font-bold mb-2">Community Tree Planting Day</h3>
-                    <p class="text-sm opacity-80 mb-4 flex-grow">Join us in our conservation efforts to reforest a section of the camp. Fun for the whole family.</p>
-                    <a href="#" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">I'm Interested</a>
-                </div>
-            </div>
-        </section>
-
-    </main>
+            </section>
+        </main>
+    </div>
 
     <!-- Footer -->
-    <footer id="about" class="bg-gray-900 text-white">
+    <footer id="about" class="bg-brand-dark text-white content-section">
         <div class="container mx-auto px-6 py-12">
-            <div class="grid md:grid-cols-4 gap-8">
+             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <h4 class="font-bold text-lg mb-4">Ngubi Adventure Forest Camp</h4>
                     <p class="text-gray-400">Your gateway to adventure, fitness, and conservation in the heart of the Kikuyu escarpment forest.</p>
@@ -191,14 +229,12 @@
                         <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
                         <li class="mb-2"><a href="#services" class="text-gray-400 hover:text-white">Services</a></li>
                         <li class="mb-2"><a href="#events" class="text-gray-400 hover:text-white">Events</a></li>
-                        <li class="mb-2"><a href="#booking" class="text-gray-400 hover:text-white">Book Now</a></li>
                     </ul>
                 </div>
                 <div id="contact">
                     <h4 class="font-bold text-lg mb-4">Our Mission</h4>
                     <ul>
                         <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Our Conservation Story</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">About Ngubi Forest</a></li>
                         <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Community Initiatives</a></li>
                         <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
                     </ul>
@@ -206,13 +242,11 @@
                 <div>
                     <h4 class="font-bold text-lg mb-4">Follow Us</h4>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <!-- Facebook Icon -->
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-white">
+                           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9.19795 21.5H13.198V13.4901H16.1618L16.6711 9.49012H13.198V7.5C13.198 6.94772 13.6457 6.5 14.198 6.5H16.5V2.5H13.198C10.5919 2.5 8.5 4.59185 8.5 7.2V9.49012H5.5V13.4901H8.5V21.5H9.19795Z"/></svg>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <!-- Instagram Icon -->
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.064.049-1.644.212-2.126.41a3.17 3.17 0 00-1.138.746 3.17 3.17 0 00-.746 1.138c-.198.482-.361 1.062-.41 2.126-.049 1.023-.06 1.351-.06 3.807s.011 2.784.06 3.808c.049 1.064.212 1.644.41 2.126a3.17 3.17 0 00.746 1.138 3.17 3.17 0 001.138.746c.482.198 1.062.361 2.126.41 1.023.049 1.351.06 3.807.06s2.784-.011 3.808-.06c1.064-.049 1.644-.212 2.126-.41a3.17 3.17 0 001.138-.746 3.17 3.17 0 00.746-1.138c.198-.482-.361-1.062-.41-2.126.049-1.024.06-1.351.06-3.808s-.011-2.784-.06-3.807c-.049-1.064-.212-1.644-.41-2.126a3.17 3.17 0 00-.746-1.138 3.17 3.17 0 00-1.138-.746c-.482-.198-1.062-.361-2.126-.41-1.024-.049-1.351-.06-3.807-.06zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z" clip-rule="evenodd" /></svg>
+                        <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-white">
+                           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C8.4301 1.25 8.12789 1.26448 7.02231 1.31408C5.92231 1.36332 5.12211 1.53122 4.44191 1.79153C3.75471 2.05526 3.16127 2.44391 2.59711 3.00289C2.04363 3.5615 1.65463 4.14942 1.38927 4.83671C1.12769 5.51731 0.960784 6.31751 0.911184 7.41163C0.86231 8.51758 0.846069 8.82015 0.846069 12.3542C0.846069 15.8882 0.860542 16.1908 0.911184 17.2964C0.960784 18.3905 1.12769 19.1907 1.38927 19.8713C1.65463 20.5586 2.04363 21.1465 2.59711 21.7051C3.16127 22.2641 3.75471 22.6527 4.44191 22.9165C5.12211 23.1768 5.92231 23.3447 7.02231 23.3939C8.12789 23.4435 8.4301 23.458 12 23.458C15.5699 23.458 15.8721 23.4435 16.9777 23.3939C18.0777 23.3447 18.8779 23.1768 19.5581 22.9165C20.2453 22.6527 20.8387 22.2641 21.4029 21.7051C21.9564 21.1465 22.3454 20.5586 22.6107 19.8713C22.8723 19.1907 23.0392 18.3905 23.0888 17.2964C23.1377 16.1908 23.1539 15.8882 23.1539 12.3542C23.1539 8.82015 23.1377 8.51758 23.0888 7.41163C23.0392 6.31751 22.8723 5.51731 22.6107 4.83671C22.3454 4.14942 21.9564 3.5615 21.4029 3.00289C20.8387 2.44391 20.2453 2.05526 19.5581 1.79153C18.8779 1.53122 18.0777 1.36332 16.9777 1.31408C15.8721 1.26448 15.5699 1.25 12 1.25ZM12 3.125C15.5251 3.125 15.8083 3.13883 16.8929 3.18752C17.9429 3.23512 18.5283 3.40012 18.913 3.55931C19.3879 3.75472 19.7575 4.00289 20.1063 4.35172C20.4551 4.70054 20.7033 5.07015 20.8987 5.54504C21.0579 5.92973 21.2229 6.51515 21.2705 7.56515C21.3192 8.64973 21.333 8.93294 21.333 12.3542C21.333 15.7754 21.3192 16.0586 21.2705 17.1432C21.2229 18.1932 21.0579 18.7786 20.8987 19.1633C20.7033 19.6382 20.4551 20.0078 20.1063 20.3566C19.7575 20.7055 19.3879 20.9536 18.913 21.149C18.5283 21.3082 17.9429 21.4732 16.8929 21.5208C15.8083 21.5695 15.5251 21.5833 12 21.5833C8.47488 21.5833 8.19167 21.5695 7.10709 21.5208C6.05709 21.4732 5.47167 21.3082 5.087 21.149C4.61211 20.9536 4.24249 20.7055 3.89366 20.3566C3.54483 20.0078 3.29666 19.6382 3.10125 19.1633C2.94206 18.7786 2.77706 18.1932 2.72946 17.1432C2.68077 16.0586 2.66695 15.7754 2.66695 12.3542C2.66695 8.93294 2.68077 8.64973 2.72946 7.56515C2.77706 6.51515 2.94206 5.92973 3.10125 5.54504C3.29666 5.07015 3.54483 4.70054 3.89366 4.35172C4.24249 4.00289 4.61211 3.75472 5.087 3.55931C5.47167 3.40012 6.05709 3.23512 7.10709 3.18752C8.19167 3.13883 8.47488 3.125 12 3.125ZM12 6.875C9.17258 6.875 6.875 9.17258 6.875 12C6.875 14.8274 9.17258 17.125 12 17.125C14.8274 17.125 17.125 14.8274 17.125 12C17.125 9.17258 14.8274 6.875 12 6.875ZM12 15.25C10.2051 15.25 8.75 13.7949 8.75 12C8.75 10.2051 10.2051 8.75 12 8.75C13.7949 8.75 15.25 10.2051 15.25 12C15.25 13.7949 13.7949 15.25 12 15.25ZM17.375 7.625C17.375 8.16284 16.9378 8.6 16.4 8.6C15.8622 8.6 15.425 8.16284 15.425 7.625C15.425 7.08716 15.8622 6.65 16.4 6.65C16.9378 6.65 17.375 7.08716 17.375 7.625Z"/></svg>
                         </a>
                     </div>
                 </div>
@@ -228,32 +262,22 @@
         // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
             mobileMenu.classList.toggle('hidden');
         });
-
-        // Hero Slideshow
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('#hero-slider .hero-slide');
-        const totalSlides = slides.length;
-
-        function showSlide(n) {
-            slides.forEach((slide, index) => {
-                slide.classList.remove('active');
-            });
-            slides[n].classList.add('active');
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
-
-        // Initialize slideshow
-        if (totalSlides > 0) {
-            showSlide(currentSlide);
-            setInterval(nextSlide, 5000); // Change slide every 5 seconds
-        }
+        
+        // Change header background on scroll
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.remove('bg-transparent', 'text-white');
+                header.classList.add('bg-white/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
+            } else {
+                header.classList.add('bg-transparent', 'text-white');
+                header.classList.remove('bg-white/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
+            }
+        });
 
     </script>
 </body>
