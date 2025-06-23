@@ -7,7 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <!-- CHANGE: Imported Edu SA Hand font -->
+    <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Hand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     
     <script>
@@ -21,6 +22,10 @@
                 'brand-cream-menu': '#404a2a',
                 'brand-cream': '#F8F7F2', 
                 'brand-dark': '#1c1c1c',
+              },
+              // CHANGE: Set Edu SA Hand as the default sans-serif font
+              fontFamily: {
+                sans: ['Edu SA Hand', 'cursive'],
               }
             }
           }
@@ -58,8 +63,6 @@
                     <p class="max-w-2xl mx-auto text-gray-600">We have an experience designed for you, whether you're a corporate team, a family, or a weekend fitness warrior.</p>
                 </div>
                 <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <!-- CHANGE: This card now links to team-package.html -->
                     <a href="team-package.html" class="image-card" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
@@ -70,8 +73,6 @@
                             </span>
                         </div>
                     </a>
-
-                    <!-- CHANGE: This card now links to day-pass.html -->
                     <a href="day-pass.html" class="image-card" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e-306?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
@@ -82,8 +83,6 @@
                             </span>
                         </div>
                     </a>
-                    
-                    <!-- CHANGE: This card now links to bootcamp.html -->
                     <a href="bootcamp.html" class="image-card md:col-span-2 lg:col-span-1" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
