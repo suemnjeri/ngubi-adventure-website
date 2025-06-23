@@ -31,7 +31,7 @@
         }
 
         .content-section {
-             background-color: #F8F7F2;
+             background-color: #F8F7F2; /* This ensures the scrollable content has the right background */
         }
 
         .storybrand-button {
@@ -93,11 +93,19 @@
 
     <header class="bg-transparent text-white fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-header">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- CHANGE: Replaced with a new, clean SVG version of your logo -->
+             <!-- CHANGE: Re-coded the SVG for better rendering and color accuracy -->
             <a href="#" class="flex items-center space-x-3">
-                <svg class="h-10" viewBox="0 0 178 111" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M127.352 101.403H50.551C49.0335 101.403 47.7949 100.165 47.7949 98.6472V58.4688C47.7949 56.9513 49.0335 55.7128 50.551 55.7128H127.352C128.87 55.7128 130.108 56.9513 130.108 58.4688V98.6472C130.108 100.165 128.87 101.403 127.352 101.403Z" fill="#4A2C2A"/>
-                    <path d="M151.516 37.1979C154.12 29.8811 152.026 21.5962 146.742 16.3115C141.457 11.0268 133.172 8.93291 125.855 11.537L104.295 18.1318C97.6675 20.5312 90.5383 20.5312 83.9108 18.1318L56.5186 11.537C49.2018 8.93291 40.9169 11.0268 35.6322 16.3115C30.3475 21.5962 28.2536 29.8811 30.8576 37.1979L49.4523 84.9744C52.0563 92.2912 59.3242 97.4727 67.2987 97.4727H115.075C123.05 97.4727 130.318 92.2912 132.922 84.9744L151.516 37.1979Z" fill="#2A3D33"/>
+                <svg class="h-10 w-auto" viewBox="0 0 152 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_105_2)">
+                    <path d="M110.208 41.5164C107.939 37.8443 104.537 35.1554 100.151 33.4497L59.9066 18.2715C56.1396 16.7933 51.8804 16.7933 48.1134 18.2715L7.86816 33.4497C3.4836 35.1554 0.0813682 37.8443 -2.18774 41.5164C-4.45675 45.1882 -5.52837 49.5843 -5.24587 53.9804V53.9804C-5.16937 55.242 -4.10912 56.1989 -2.84137 56.1989H60.8584C62.1261 56.1989 63.1864 55.242 63.2629 53.9804V53.9804C63.5454 49.5843 62.4738 45.1882 60.2043 41.5164H60.2301V41.5164L110.208 41.5164Z" fill="#2A3D33"/>
+                    <path d="M-5.24587 53.9805L-49.1419 100.315H110.208L63.2629 53.9805H-5.24587Z" fill="#4A2C2A"/>
+                    <path d="M59.9062 18.2715L34.0099 0.685547L7.86816 18.2715L34.0099 36.1039L59.9062 18.2715Z" fill="#2A3D33"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_105_2">
+                    <rect width="152" height="101" fill="white"/>
+                    </clipPath>
+                    </defs>
                 </svg>
                 <span class="text-xl font-extrabold tracking-tight text-white">NGUBI ADVENTURE</span>
             </a>
@@ -148,7 +156,6 @@
                     <h2 class="text-3xl font-bold mb-4">Choose Your Adventure</h2>
                     <p class="max-w-2xl mx-auto text-gray-600">We have an experience designed for you, whether you're a corporate team, a family, or a weekend fitness warrior.</p>
                 </div>
-                <!-- CHANGE: Container is now narrower -->
                 <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <a href="#" class="image-card" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
@@ -188,7 +195,7 @@
                     <h2 class="text-3xl font-bold mb-4">Upcoming Events</h2>
                     <p class="max-w-2xl mx-auto text-gray-600">Challenge yourself and join our growing community at one of our special monthly events. Spaces are limited!</p>
                 </div>
-                <!-- CHANGE: Container is narrower and cards are taller -->
+                <!-- CHANGE: Updated height and container width -->
                 <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-1">
                     <a href="#" class="image-card group" style="min-height: 450px; background-image: url('https://images.unsplash.com/photo-1572295743222-376e5954883e?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
