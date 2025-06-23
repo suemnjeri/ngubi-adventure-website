@@ -1,6 +1,6 @@
-/* CHANGE: Updated font-family to Rubik */
+/* CHANGE: Updated font-family to Edu SA Hand */
 body {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Edu SA Hand', cursive;
     background-color: #4a392a; 
 }
 .storybrand-button {
@@ -62,19 +62,19 @@ body {
 }
 
 .content-wrapper h2 {
-    font-size: 1.875rem; /* 30px */
-    font-weight: 800;
+    font-size: 2.25rem; /* Increased size for handwritten font */
+    font-weight: 700;
     margin-bottom: 1rem;
 }
 .content-wrapper h3 {
-    font-size: 1.25rem; /* 20px */
+    font-size: 1.875rem; /* Increased size for handwritten font */
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
 .content-wrapper p, .content-wrapper li {
-    font-size: 1.125rem; /* 18px */
+    font-size: 1.25rem; /* Increased size for better readability */
     line-height: 1.75;
-    color: #4b5563; /* gray-600 */
+    color: #4b5563;
     margin-bottom: 1rem;
 }
 .content-wrapper ul {
