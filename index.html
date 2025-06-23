@@ -30,8 +30,9 @@
             background: rgba(0,0,0,0.5);
         }
 
-        .content-section {
-             background-color: #F8F7F2; /* CHANGE: Ensured this has the cream background color */
+        /* This class will now be applied directly to ensure the background color is set */
+        .content-bg {
+             background-color: #F8F7F2;
         }
 
         .storybrand-button {
@@ -93,20 +94,13 @@
 
     <header class="bg-transparent text-white fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-header">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- CHANGE: Replaced with a new, clean SVG version of your logo -->
+            <!-- CHANGE: New simplified and robust SVG logo -->
             <a href="#" class="flex items-center space-x-3">
-                <svg class="h-10 w-auto" viewBox="0 0 152 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_105_2)">
+                 <svg class="h-10 w-auto" viewBox="0 0 152 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M110.208 53.9805L-49.1419 100.315H110.208L63.2629 53.9805H-5.24587Z" fill="#4A2C2A"/>
                     <path d="M110.208 41.5164C107.939 37.8443 104.537 35.1554 100.151 33.4497L59.9066 18.2715C56.1396 16.7933 51.8804 16.7933 48.1134 18.2715L7.86816 33.4497C3.4836 35.1554 0.0813682 37.8443 -2.18774 41.5164C-4.45675 45.1882 -5.52837 49.5843 -5.24587 53.9804V53.9804C-5.16937 55.242 -4.10912 56.1989 -2.84137 56.1989H60.8584C62.1261 56.1989 63.1864 55.242 63.2629 53.9804V53.9804C63.5454 49.5843 62.4738 45.1882 60.2043 41.5164H60.2301V41.5164L110.208 41.5164Z" fill="#2A3D33"/>
-                    <path d="M-5.24587 53.9805L-49.1419 100.315H110.208L63.2629 53.9805H-5.24587Z" fill="#4A2C2A"/>
                     <path d="M59.9062 18.2715L34.0099 0.685547L7.86816 18.2715L34.0099 36.1039L59.9062 18.2715Z" fill="#2A3D33"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_105_2">
-                    <rect width="152" height="101" fill="white"/>
-                    </clipPath>
-                    </defs>
-                </svg>
+                 </svg>
                 <span class="text-xl font-extrabold tracking-tight text-white">NGUBI ADVENTURE</span>
             </a>
             <div class="hidden md:flex items-center space-x-8">
@@ -148,7 +142,8 @@
         </div>
     </section>
 
-    <div class="content-section relative z-10">
+    <!-- CHANGE: Added content-bg class to this div to ensure correct background color -->
+    <div class="content-section relative z-10 content-bg">
         <main class="container mx-auto px-6 py-24">
             
             <section id="services" class="mb-24">
@@ -195,9 +190,9 @@
                     <h2 class="text-3xl font-bold mb-4">Upcoming Events</h2>
                     <p class="max-w-2xl mx-auto text-gray-600">Challenge yourself and join our growing community at one of our special monthly events. Spaces are limited!</p>
                 </div>
-                <!-- CHANGE: Updated height and container width -->
+                <!-- CHANGE: Adjusted height and container width -->
                 <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-1">
-                    <a href="#" class="image-card group" style="min-height: 450px; background-image: url('https://images.unsplash.com/photo-1572295743222-376e5954883e?q=80&w=2070&auto=format&fit=crop');">
+                    <a href="#" class="image-card group" style="min-height: 400px; background-image: url('https://images.unsplash.com/photo-1572295743222-376e5954883e?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <p class="text-sm font-semibold text-brand-green-light mb-1">JULY 20, 2025</p>
@@ -207,7 +202,7 @@
                             </span>
                         </div>
                     </a>
-                    <a href="#" class="image-card group" style="min-height: 450px; background-image: url('https://images.unsplash.com/photo-1544758394-e1d9354115e5?q=80&w=1974&auto=format&fit=crop');">
+                    <a href="#" class="image-card group" style="min-height: 400px; background-image: url('https://images.unsplash.com/photo-1544758394-e1d9354115e5?q=80&w=1974&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <p class="text-sm font-semibold text-brand-green-light mb-1">AUGUST 17, 2025</p>
@@ -217,7 +212,7 @@
                             </span>
                         </div>
                     </a>
-                    <a href="#" class="image-card group md:col-span-2 lg:col-span-1" style="min-height: 450px; background-image: url('https://images.unsplash.com/photo-1515150144380-b28e483c3e41?q=80&w=1974&auto=format&fit=crop');">
+                    <a href="#" class="image-card group md:col-span-2 lg:col-span-1" style="min-height: 400px; background-image: url('https://images.unsplash.com/photo-1515150144380-b28e483c3e41?q=80&w=1974&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <p class="text-sm font-semibold text-brand-green-light mb-1">SEPTEMBER 14, 2025</p>
