@@ -7,24 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #4a392a; /* User's selected dark tan color for the page */
-        }
-        .storybrand-button {
-            transition: all 0.2s ease-in-out;
-        }
-        .storybrand-button:hover {
-            transform: scale(1.05);
-        }
-        .page-hero-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
-        }
-    </style>
-    <!-- User's updated color palette -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <!-- Link to our new external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
     <script>
+        // This part remains here to configure TailwindCSS with our custom colors
         tailwind.config = {
           theme: {
             extend: {
@@ -33,7 +21,7 @@
                 'brand-green-light': '#84BD00',
                 'brand-brown-dark': '#4a2c2a',
                 'brand-cream-menu': '#404a2a',
-                'brand-cream': '#4a392a', 
+                'brand-cream': '#F8F7F2', 
                 'brand-dark': '#1c1c1c',
               }
             }
@@ -43,35 +31,8 @@
 </head>
 <body class="bg-brand-cream text-brand-dark">
 
-    <!-- Header -->
-    <header class="bg-brand-cream-menu/90 backdrop-blur-md shadow-md sticky top-0 z-50 text-white" id="main-header">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3">
-                <span class="text-xl font-extrabold tracking-tight">NGUBI ADVENTURE</span>
-            </a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="index.html#services" class="font-semibold hover:text-brand-green-light">Our Experiences</a>
-                <a href="index.html#events" class="font-semibold hover:text-brand-green-light">Upcoming Events</a>
-                <a href="index.html#about" class="font-semibold hover:text-brand-green-light">Our Story</a>
-            </div>
-            <a href="#booking" class="bg-brand-green-light text-brand-dark font-bold py-2 px-6 storybrand-button hidden md:inline-block">
-                Book Now
-            </a>
-            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-cream-menu">
-            <a href="index.html#services" class="block py-3 px-6 font-semibold">Our Experiences</a>
-            <a href="index.html#events" class="block py-3 px-6 font-semibold">Upcoming Events</a>
-            <a href="index.html#about" class="block py-3 px-6 font-semibold">Our Story</a>
-            <div class="p-4">
-                 <a href="#booking" class="bg-brand-green-light text-brand-dark font-bold py-3 px-6 w-full text-center block">
-                    Book Now
-                </a>
-            </div>
-        </div>
-    </header>
+    <!-- Header will be loaded here by script.js -->
+    <div id="header-placeholder"></div>
 
     <section class="relative h-[60vh] min-h-[400px] bg-cover bg-center flex items-end p-8 text-white" style="background-image: url('https://images.unsplash.com/photo-1533038590840-1cde6e668a91?q=80&w=1974&auto=format&fit=crop');">
         <div class="absolute inset-0 page-hero-overlay"></div>
@@ -80,59 +41,63 @@
         </div>
     </section>
 
-    <!-- Main Content for this Page -->
-    <main class="py-16">
-        <div class="max-w-4xl mx-auto p-6 md:p-12">
+    <main class="py-16 content-section">
+        <div class="max-w-4xl mx-auto bg-white p-6 md:p-12 shadow-lg">
         
-            <div class="mb-12 text-center">
-                <h2 class="text-3xl font-bold mb-4 text-white">Build Your Own Perfect Day</h2>
-                <p class="text-gray-300 leading-relaxed max-w-2xl mx-auto">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold mb-4">Build Your Own Perfect Day</h2>
+                <p class="text-gray-700 leading-relaxed">
                     Our Day Adventure Pass is the perfect option for individuals, families, and small groups who want the freedom to choose. Start with your Conservation Pass to access the grounds, then add on any of our thrilling adventures to create an experience that's uniquely yours. It's your day, your way.
                 </p>
             </div>
 
             <div>
-                <h2 class="text-3xl font-bold mb-8 text-center text-white">Your Adventure Menu</h2>
-                <div class="space-y-8 text-white">
-                    <!-- Item 1: Conservation Fee -->
-                    <div>
-                        <!-- CHANGE: Title color and size updated -->
-                        <h3 class="text-xl font-semibold text-white">Conservation Fee (Required)</h3>
-                        <p class="text-lg text-gray-300 mt-2">Gives you access to our picnic lawns and serene nature trails.</p>
-                        <!-- CHANGE: Price size and weight updated -->
-                        <p class="text-xl font-semibold text-white mt-2">KSh 500 <span class="text-base font-normal text-gray-400">/ per person</span></p>
+                <h2 class="text-3xl font-bold mb-8 text-center">Your Adventure Menu</h2>
+                <div class="space-y-6">
+                    <div class="p-6 border-l-4 border-brand-green-dark bg-gray-50">
+                        <div class="flex justify-between items-center flex-wrap">
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold">Conservation Fee (Required)</h3>
+                                <p class="text-gray-600 mt-1">Gives you access to our picnic lawns and serene nature trails.</p>
+                            </div>
+                            <div class="text-right ml-4 mt-4 sm:mt-0">
+                                <p class="text-2xl font-extrabold text-brand-green-dark">KSh 500</p>
+                                <p class="text-sm text-gray-500">per person</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <hr class="border-gray-600 my-6">
-
-                    <!-- Item 2: Obstacle Course -->
-                    <div>
-                         <!-- CHANGE: Title color and size updated -->
-                         <h3 class="text-xl font-semibold text-white">Obstacle Course (Add-On)</h3>
-                         <p class="text-lg text-gray-300 mt-2">Test your agility and strength. Fee is for the whole day, run the course as many times as you like!</p>
-                         <!-- CHANGE: Price size and weight updated -->
-                         <p class="text-xl font-semibold text-white mt-2">KSh 1000 <span class="text-base font-normal text-gray-400">/ per person</span></p>
-                         <p class="text-sm text-gray-400 mt-2">*Excludes the Conservation Fee.</p>
+                    <div class="p-6 border-l-4 border-gray-300">
+                         <div class="flex justify-between items-center flex-wrap">
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold">Obstacle Course (Add-On)</h3>
+                                <p class="text-gray-600 mt-1">Test your agility and strength. Fee is for the whole day, run the course as many times as you like!</p>
+                            </div>
+                            <div class="text-right ml-4 mt-4 sm:mt-0">
+                                <p class="text-2xl font-extrabold">KSh 1000</p>
+                                <p class="text-sm text-gray-500">per person</p>
+                            </div>
+                        </div>
+                         <p class="text-xs text-gray-500 mt-3">*Excludes the Conservation Fee.</p>
                     </div>
-                    
-                    <hr class="border-gray-600 my-6">
-
-                     <!-- Item 3: Ngubi Trail Quest -->
-                    <div>
-                         <!-- CHANGE: Title color and size updated -->
-                         <h3 class="text-xl font-semibold text-white">The Ngubi Trail Quest (Add-On)</h3>
-                         <p class="text-lg text-gray-300 mt-2">A 90-minute team-based scavenger hunt through the forest.</p>
-                         <!-- CHANGE: Price size and weight updated -->
-                         <p class="text-xl font-semibold text-white mt-2">KSh 800 <span class="text-base font-normal text-gray-400">/ per person</span></p>
-                         <p class="text-sm text-gray-400 mt-2">*Excludes the Conservation Fee.</p>
+                    <div class="p-6 border-l-4 border-gray-300">
+                         <div class="flex justify-between items-center flex-wrap">
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold">The Ngubi Trail Quest (Add-On)</h3>
+                                <p class="text-gray-600 mt-1">A 90-minute team-based scavenger hunt through the forest.</p>
+                            </div>
+                            <div class="text-right ml-4 mt-4 sm:mt-0">
+                                <p class="text-2xl font-extrabold">KSh 800</p>
+                                <p class="text-sm text-gray-500">per person</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3">*Excludes the Conservation Fee.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Booking Section -->
             <section id="booking" class="mt-16 bg-brand-green-dark text-white p-12 text-center">
                 <h2 class="text-3xl font-bold mb-4">Ready for an Unforgettable Day?</h2>
-                <p class="max-w-xl mx-auto mb-8 text-gray-300">
+                <p class="max-w-xl mx-auto mb-8">
                     Book your Day Pass online to secure your spot. All payments are made on arrival. We can't wait to host you!
                 </p>
                 <a href="#" class="bg-brand-green-light text-brand-dark font-bold py-4 px-10 text-xl storybrand-button">
@@ -142,70 +107,10 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer id="about-footer" class="bg-brand-brown-dark text-white">
-        <div class="container mx-auto px-6 py-12">
-             <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Ngubi Adventure Forest Camp</h4>
-                    <p class="text-gray-400">Your gateway to adventure, fitness, and conservation in the heart of the Kikuyu escarpment forest.</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
-                    <ul>
-                        <li class="mb-2"><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li class="mb-2"><a href="index.html#services" class="text-gray-400 hover:text-white">Experiences</a></li>
-                        <li class="mb-2"><a href="index.html#events" class="text-gray-400 hover:text-white">Events</a></li>
-                    </ul>
-                </div>
-                <div id="contact">
-                    <h4 class="font-bold text-lg mb-4">Our Mission</h4>
-                    <ul>
-                        <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Our Conservation Story</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Community Initiatives</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-white">
-                           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9.19795 21.5H13.198V13.4901H16.1618L16.6711 9.49012H13.198V7.5C13.198 6.94772 13.6457 6.5 14.198 6.5H16.5V2.5H13.198C10.5919 2.5 8.5 4.59185 8.5 7.2V9.49012H5.5V13.4901H8.5V21.5H9.19795Z"/></svg>
-                        </a>
-                        <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-white">
-                           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C8.4301 1.25 8.12789 1.26448 7.02231 1.31408C5.92231 1.36332 5.12211 1.53122 4.44191 1.79153C3.75471 2.05526 3.16127 2.44391 2.59711 3.00289C2.04363 3.5615 1.65463 4.14942 1.38927 4.83671C1.12769 5.51731 0.960784 6.31751 0.911184 7.41163C0.86231 8.51758 0.846069 8.82015 0.846069 12.3542C0.846069 15.8882 0.860542 16.1908 0.911184 17.2964C0.960784 18.3905 1.12769 19.1907 1.38927 19.8713C1.65463 20.5586 2.04363 21.1465 2.59711 21.7051C3.16127 22.2641 3.75471 22.6527 4.44191 22.9165C5.12211 23.1768 5.92231 23.3447 7.02231 23.3939C8.12789 23.4435 8.4301 23.458 12 23.458C15.5699 23.458 15.8721 23.4435 16.9777 23.3939C18.0777 23.3447 18.8779 23.1768 19.5581 22.9165C20.2453 22.6527 20.8387 22.2641 21.4029 21.7051C21.9564 21.1465 22.3454 20.5586 22.6107 19.8713C22.8723 19.1907 23.0392 18.3905 23.0888 17.2964C23.1377 16.1908 23.1539 15.8882 23.1539 12.3542C23.1539 8.82015 23.1377 8.51758 23.0888 7.41163C23.0392 6.31751 22.8723 5.51731 22.6107 4.83671C22.3454 4.14942 21.9564 3.5615 21.4029 3.00289C20.8387 2.44391 20.2453 2.05526 19.5581 1.79153C18.8779 1.53122 18.0777 1.36332 16.9777 1.31408C15.8721 1.26448 15.5699 1.25 12 1.25ZM12 3.125C15.5251 3.125 15.8083 3.13883 16.8929 3.18752C17.9429 3.23512 18.5283 3.40012 18.913 3.55931C19.3879 3.75472 19.7575 4.00289 20.1063 4.35172C20.4551 4.70054 20.7033 5.07015 20.8987 5.54504C21.0579 5.92973 21.2229 6.51515 21.2705 7.56515C21.3192 8.64973 21.333 8.93294 21.333 12.3542C21.333 15.7754 21.3192 16.0586 21.2705 17.1432C21.2229 18.1932 21.0579 18.7786 20.8987 19.1633C20.7033 19.6382 20.4551 20.0078 20.1063 20.3566C19.7575 20.7055 19.3879 20.9536 18.913 21.149C18.5283 21.3082 17.9429 21.4732 16.8929 21.5208C15.8083 21.5695 15.5251 21.5833 12 21.5833C8.47488 21.5833 8.19167 21.5695 7.10709 21.5208C6.05709 21.4732 5.47167 21.3082 5.087 21.149C4.61211 20.9536 4.24249 20.7055 3.89366 20.3566C3.54483 20.0078 3.29666 19.6382 3.10125 19.1633C2.94206 18.7786 2.77706 18.1932 2.72946 17.1432C2.68077 16.0586 2.66695 15.7754 2.66695 12.3542C2.66695 8.93294 2.68077 8.64973 2.72946 7.56515C2.77706 6.51515 2.94206 5.92973 3.10125 5.54504C3.29666 5.07015 3.54483 4.70054 3.89366 4.35172C4.24249 4.00289 4.61211 3.75472 5.087 3.55931C5.47167 3.40012 6.05709 3.23512 7.10709 3.18752C8.19167 3.13883 8.47488 3.125 12 3.125ZM12 6.875C9.17258 6.875 6.875 9.17258 6.875 12C6.875 14.8274 9.17258 17.125 12 17.125C14.8274 17.125 17.125 14.8274 17.125 12C17.125 9.17258 14.8274 6.875 12 6.875ZM12 15.25C10.2051 15.25 8.75 13.7949 8.75 12C8.75 10.2051 10.2051 8.75 12 8.75C13.7949 8.75 15.25 10.2051 15.25 12C15.25 13.7949 13.7949 15.25 12 15.25ZM17.375 7.625C17.375 8.16284 16.9378 8.6 16.4 8.6C15.8622 8.6 15.425 8.16284 15.425 7.625C15.425 7.08716 15.8622 6.65 16.4 6.65C16.9378 6.65 17.375 7.08716 17.375 7.625Z"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2025 Ngubi Adventure Forest Camp. All Rights Reserved.</p>
-                <p>Website designed by Susan M. & her AI Coach.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer will be loaded here by script.js -->
+    <div id="footer-placeholder"></div>
 
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Change header background on scroll
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.remove('bg-transparent', 'text-white');
-                header.classList.add('bg-brand-cream-menu/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
-            } else {
-                header.classList.add('bg-transparent', 'text-white');
-                header.classList.remove('bg-brand-cream-menu/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
-            }
-        });
-
-    </script>
+    <!-- Link to our new external javascript file -->
+    <script src="script.js"></script>
 </body>
 </html>
