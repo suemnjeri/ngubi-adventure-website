@@ -41,7 +41,6 @@
             transform: scale(1.05);
         }
         
-        /* NEW: Styling for both Service and Event Cards for consistency */
         .image-card {
             position: relative;
             overflow: hidden;
@@ -51,7 +50,7 @@
             flex-direction: column;
             justify-content: flex-end;
             color: white;
-            padding: 2rem;
+            padding: 1.5rem; /* Reduced padding for a tighter look */
         }
         .image-card-overlay {
             position: absolute;
@@ -71,9 +70,7 @@
             transform: translateY(-10px);
         }
 
-
     </style>
-    <!-- CHANGE: Updated color palette based on your logo and t-shirt images -->
     <script>
         tailwind.config = {
           theme: {
@@ -96,15 +93,21 @@
 
     <header class="bg-transparent text-white fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-header">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-extrabold tracking-tight">
-                NGUBI ADVENTURE
+            <!-- CHANGE: Replaced text with SVG logo -->
+            <a href="#" class="flex items-center space-x-2">
+                <svg class="h-10 w-10 text-white" viewBox="0 0 161 101" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M111.432 100.315H49.5297C48.2114 100.315 47.126 99.23 47.126 97.9113V59.6973C47.126 58.3786 48.2114 57.2936 49.5297 57.2936H111.432C112.75 57.2936 113.835 58.3786 113.835 59.6973V97.9113C113.835 99.23 112.75 100.315 111.432 100.315Z" />
+                    <path d="M160.211 41.5164C157.942 37.8443 154.54 35.1554 150.155 33.4497L109.91 18.2715C106.143 16.7933 101.884 16.7933 98.1171 18.2715L57.8719 33.4497C53.4873 35.1554 50.0851 37.8443 47.816 41.5164C45.547 45.1882 44.4754 49.5843 44.7579 53.9804V53.9804C44.8344 55.242 45.8946 56.1989 47.1624 56.1989H110.862C112.13 56.1989 113.19 55.242 113.266 53.9804V53.9804C113.549 49.5843 112.477 45.1882 110.208 41.5164H110.234V41.5164L160.211 41.5164Z" />
+                    <path d="M44.7578 53.9805L0.861719 100.315H160.211L113.266 53.9805H44.7578Z" />
+                    <path d="M109.91 18.2715L84.0139 0.685547L57.8719 18.2715L84.0139 36.1039L109.91 18.2715Z" />
+                </svg>
+                <span class="text-xl font-extrabold tracking-tight">NGUBI ADVENTURE</span>
             </a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#services" class="font-semibold hover:text-brand-green-light">Our Experiences</a>
                 <a href="#events" class="font-semibold hover:text-brand-green-light">Upcoming Events</a>
                 <a href="#about" class="font-semibold hover:text-brand-green-light">Our Story</a>
             </div>
-            <!-- CHANGE: Updated booking button color -->
             <a href="#booking" class="bg-brand-green-light text-brand-dark font-bold py-2 px-6 storybrand-button hidden md:inline-block">
                 Book Now
             </a>
@@ -142,19 +145,23 @@
     <div class="content-section relative z-10">
         <main class="container mx-auto px-6 py-24">
             
-            <!-- CHANGE: Re-designed this entire section for a more visual, compact feel -->
             <section id="services" class="mb-24">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold mb-4">Choose Your Adventure</h2>
                     <p class="max-w-2xl mx-auto text-gray-600">We have an experience designed for you, whether you're a corporate team, a family, or a weekend fitness warrior.</p>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- CHANGE: Services now in a centered, narrower container -->
+                <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Service 1: Team Adventure Package -->
                     <a href="#" class="image-card" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <h3 class="text-2xl font-extrabold">Team Adventure Package</h3>
                             <p class="font-semibold mt-2">All-inclusive packages for groups.</p>
+                             <!-- CHANGE: Added explicit button -->
+                            <span class="inline-block mt-4 border-2 border-brand-green-light py-2 px-5 font-bold text-brand-dark bg-brand-green-light">
+                                View Package
+                            </span>
                         </div>
                     </a>
                     <!-- Service 2: Day Adventure Pass -->
@@ -163,6 +170,10 @@
                         <div class="card-content">
                             <h3 class="text-2xl font-extrabold">Day Adventure Pass</h3>
                             <p class="font-semibold mt-2">Your ticket to a perfect day out.</p>
+                             <!-- CHANGE: Added explicit button -->
+                            <span class="inline-block mt-4 border-2 border-brand-green-light py-2 px-5 font-bold text-brand-dark bg-brand-green-light">
+                                Plan Your Day
+                            </span>
                         </div>
                     </a>
                     <!-- Service 3: Weekend Bootcamp -->
@@ -171,24 +182,27 @@
                         <div class="card-content">
                             <h3 class="text-2xl font-extrabold">Weekend Bootcamp</h3>
                             <p class="font-semibold mt-2">Join our powerful coached fitness session.</p>
+                             <!-- CHANGE: Added explicit button -->
+                            <span class="inline-block mt-4 border-2 border-brand-green-light py-2 px-5 font-bold text-brand-dark bg-brand-green-light">
+                                Reserve Spot
+                            </span>
                         </div>
                     </a>
                 </div>
             </section>
 
-            <!-- CHANGE: Refined Events section for a cleaner look -->
             <section id="events" class="mb-24">
                  <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold mb-4">Upcoming Events</h2>
                     <p class="max-w-2xl mx-auto text-gray-600">Challenge yourself and join our growing community at one of our special monthly events. Spaces are limited!</p>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-1">
+                <!-- CHANGE: Events now in a centered, narrower container -->
+                <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-1">
                      <!-- Event 1 -->
                     <a href="#" class="image-card group" style="background-image: url('https://images.unsplash.com/photo-1572295743222-376e5954883e?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <p class="text-sm font-semibold text-brand-green-light mb-1">JULY 20, 2025</p>
-                            <!-- Title size reduced -->
                             <h3 class="text-2xl font-black mb-4">Forest Trail Run</h3>
                             <span class="border-2 border-brand-green-light py-2 px-6 font-bold group-hover:bg-brand-green-light group-hover:text-brand-dark transition-colors">
                                 View Details
