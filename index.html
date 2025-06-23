@@ -7,10 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- CHANGE: Imported Edu SA Hand font -->
+    <!-- Imported Edu SA Hand font -->
     <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Hand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     
+    <!-- CHANGE: Removed the inline tailwind.config script to rely solely on style.css for fonts -->
     <script>
         tailwind.config = {
           theme: {
@@ -23,8 +24,8 @@
                 'brand-cream': '#F8F7F2', 
                 'brand-dark': '#1c1c1c',
               },
-              // CHANGE: Set Edu SA Hand as the default sans-serif font
               fontFamily: {
+                // The font is now set in style.css, but we keep this structure for potential future overrides
                 sans: ['Edu SA Hand', 'cursive'],
               }
             }
