@@ -12,6 +12,13 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+        /* Custom Tailwind Colors - We can define our brand palette here later */
+        /*
+        :root {
+            --brand-green: #1a472a;
+            --brand-orange: #f97316;
+        }
+        */
         .hero-slide {
             display: none;
             position: absolute;
@@ -39,10 +46,11 @@
 <body class="bg-gray-50 text-gray-800">
 
     <!-- Header & Navigation -->
+    <!-- CHANGE: Updated brand name and button colors -->
     <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-green-800">
-                Ngubi Adventure
+            <a href="#" class="text-2xl font-bold text-green-900">
+                Ngubi Adventure Forest Camp
             </a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#services" class="text-gray-600 hover:text-green-800">Our Services</a>
@@ -50,7 +58,7 @@
                 <a href="#about" class="text-gray-600 hover:text-green-800">Our Story</a>
                 <a href="#contact" class="text-gray-600 hover:text-green-800">Contact</a>
             </div>
-            <a href="#booking" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg storybrand-button hidden md:inline-block">
+            <a href="#booking" class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-6 rounded-lg shadow-lg storybrand-button hidden md:inline-block">
                 Book Now
             </a>
             <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
@@ -64,7 +72,7 @@
             <a href="#about" class="block py-2 px-6 text-sm text-gray-700">Our Story</a>
             <a href="#contact" class="block py-2 px-6 text-sm text-gray-700">Contact</a>
             <div class="p-4">
-                 <a href="#booking" class="bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg storybrand-button w-full text-center block">
+                 <a href="#booking" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg storybrand-button w-full text-center block">
                     Book Now
                 </a>
             </div>
@@ -75,22 +83,24 @@
     <section class="relative h-[80vh] min-h-[500px] max-h-[700px] w-full overflow-hidden text-white">
         <!-- Slideshow Container -->
         <div id="hero-slider" class="absolute inset-0">
-            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/4CAF50/FFFFFF?text=Team+Building+Fun'); background-size: cover; background-position: center;"></div>
-            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/2196F3/FFFFFF?text=Challenging+Obstacles'); background-size: cover; background-position: center;"></div>
-            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/FFC107/FFFFFF?text=Serene+Nature+Walks'); background-size: cover; background-position: center;"></div>
+            <!-- CHANGE: Updated placeholder images to be more relevant -->
+            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/1a472a/FFFFFF?text=Team+Adventure'); background-size: cover; background-position: center;"></div>
+            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/f97316/FFFFFF?text=Individual+Fitness'); background-size: cover; background-position: center;"></div>
+            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/6b7280/FFFFFF?text=Forest+Conservation'); background-size: cover; background-position: center;"></div>
         </div>
         <div class="absolute inset-0 hero-overlay"></div>
 
         <!-- Hero Content -->
+        <!-- CHANGE: Updated messaging from your StoryBrand documents -->
         <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
             <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.6);">
-                Stronger Bodies. Sharper Minds. Better Connections.
+                Feel Strong, Energized, and In Control
             </h1>
             <p class="text-lg md:text-xl max-w-3xl mb-8" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
-                Escape the routine and discover your strength in nature. We provide transformative adventure experiences that build resilient teams and empowered individuals.
+                You shouldn't have to sacrifice your health because of a busy schedule. We help you gain control of your health and become part of a supportive community in nature.
             </p>
-            <a href="#booking-form" class="bg-orange-500 text-white font-bold py-4 px-10 rounded-lg text-xl shadow-xl storybrand-button">
-                Start Your Adventure
+            <a href="#services" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-10 rounded-lg text-xl shadow-xl storybrand-button">
+                Book Your Adventure Now
             </a>
         </div>
     </section>
@@ -100,41 +110,42 @@
 
         <!-- Services Section -->
         <section id="services" class="text-center mb-24">
-            <h2 class="text-3xl font-bold mb-4">Find Your Adventure</h2>
-            <p class="max-w-2xl mx-auto text-gray-600 mb-12">Whether you're an individual seeking fitness or a group looking to build camaraderie, we have a plan for you.</p>
-            <div class="grid md:grid-cols-3 gap-8">
+             <!-- CHANGE: Updated messaging from your StoryBrand documents -->
+            <h2 class="text-3xl font-bold mb-4">How We Guide You to Success</h2>
+            <p class="max-w-2xl mx-auto text-gray-600 mb-12">With expert trainers and a serene forest location, we’ve helped hundreds of participants build both mental and physical resilience.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Service 1: Group Teambuilding -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/38A169/FFFFFF?text=Group+Teambuilding" alt="Group of people doing a team building exercise" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/166534/FFFFFF?text=Group+Teambuilding" alt="Group of people doing a team building exercise" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Group Adventure & Teambuilding</h3>
-                        <p class="text-gray-600 mb-4">Unite your team with a full day of exciting obstacle courses, nature trails, and collaborative challenges.</p>
-                        <a href="#" class="font-bold text-green-600 hover:text-green-800">Learn More &rarr;</a>
+                        <p class="text-gray-600 mb-4">For teams that want to grow stronger together. Bond deeply and leave with experiences that boost morale and cohesion.</p>
+                        <a href="#" class="font-bold text-green-700 hover:text-green-900">Book Your Team Adventure &rarr;</a>
                     </div>
                 </div>
                 <!-- Service 2: Weekend Bootcamp -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/DD6B20/FFFFFF?text=Weekend+Bootcamp" alt="Individual on an obstacle course" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/c2410c/FFFFFF?text=Weekend+Bootcamp" alt="Individual on an obstacle course" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Individual Weekend Bootcamp</h3>
-                        <p class="text-gray-600 mb-4">Join our vibrant community every Saturday for a powerful forest-based workout and fitness coaching.</p>
-                        <a href="#" class="font-bold text-green-600 hover:text-green-800">See the Schedule &rarr;</a>
+                        <p class="text-gray-600 mb-4">For the busy individual who wants a stronger body and sharper mind. Join our supportive community every Saturday.</p>
+                        <a href="#" class="font-bold text-green-700 hover:text-green-900">Reserve Your Spot &rarr;</a>
                     </div>
                 </div>
-                <!-- Service 3: Private Events -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://placehold.co/600x400/4299E1/FFFFFF?text=Private+Events" alt="A scenic view of the camp set up for a private event" class="w-full h-48 object-cover">
+                <!-- Service 3: Custom Events -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 md:col-span-2 lg:col-span-1">
+                    <img src="https://placehold.co/600x400/475569/FFFFFF?text=Private+Events" alt="A scenic view of the camp set up for a private event" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Custom & Private Bookings</h3>
+                        <h3 class="text-xl font-bold mb-2">Custom & Private Events</h3>
                         <p class="text-gray-600 mb-4">Host your own private event, retreat, or customized adventure. We'll help you plan the perfect day.</p>
-                        <a href="#" class="font-bold text-green-600 hover:text-green-800">Inquire Now &rarr;</a>
+                        <a href="#" class="font-bold text-green-700 hover:text-green-900">Inquire Now &rarr;</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Upcoming Events Section -->
-        <section id="events" class="bg-green-700 text-white rounded-2xl p-8 md:p-16 mb-24">
+        <section id="events" class="bg-green-800 text-white rounded-2xl p-8 md:p-16 mb-24">
             <div class="text-center">
                 <h2 class="text-3xl font-bold mb-4">Upcoming Events</h2>
                 <p class="max-w-2xl mx-auto opacity-90 mb-12">Challenge yourself and join our growing community at one of our special monthly events. Spaces are limited!</p>
@@ -142,24 +153,24 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Event 1 -->
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col">
-                    <img src="https://placehold.co/600x400/F56565/FFFFFF?text=Trail+Run" alt="Trail Run Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <img src="https://placehold.co/600x400/dc2626/FFFFFF?text=Trail+Run" alt="Trail Run Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
                     <h3 class="text-xl font-bold mb-2">July Forest Trail Run</h3>
                     <p class="text-sm opacity-80 mb-4 flex-grow">A scenic 10km run through the beautiful Ngubi Forest trails. All fitness levels welcome.</p>
-                    <a href="#" class="bg-orange-500 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">Register Now</a>
+                    <a href="#" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">Register Now</a>
                 </div>
                 <!-- Event 2 -->
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col">
-                    <img src="https://placehold.co/600x400/48BB78/FFFFFF?text=Cycling+Race" alt="Cycling Race Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <img src="https://placehold.co/600x400/16a34a/FFFFFF?text=Cycling+Race" alt="Cycling Race Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
                     <h3 class="text-xl font-bold mb-2">Mountain Bike Enduro</h3>
                     <p class="text-sm opacity-80 mb-4 flex-grow">Test your skills on our challenging downhill and cross-country mountain bike courses.</p>
-                    <a href="#" class="bg-orange-500 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">Book Your Spot</a>
+                    <a href="#" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">Book Your Spot</a>
                 </div>
                 <!-- Event 3 -->
                  <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col">
-                    <img src="https://placehold.co/600x400/667EEA/FFFFFF?text=Conservation+Day" alt="Conservation Day Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <img src="https://placehold.co/600x400/4f46e5/FFFFFF?text=Conservation+Day" alt="Conservation Day Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
                     <h3 class="text-xl font-bold mb-2">Community Tree Planting Day</h3>
                     <p class="text-sm opacity-80 mb-4 flex-grow">Join us in our conservation efforts to reforest a section of the camp. Fun for the whole family.</p>
-                    <a href="#" class="bg-orange-500 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">I'm Interested</a>
+                    <a href="#" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">I'm Interested</a>
                 </div>
             </div>
         </section>
@@ -167,11 +178,11 @@
     </main>
 
     <!-- Footer -->
-    <footer id="about" class="bg-gray-800 text-white">
+    <footer id="about" class="bg-gray-900 text-white">
         <div class="container mx-auto px-6 py-12">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <h4 class="font-bold text-lg mb-4">Ngubi Adventure</h4>
+                    <h4 class="font-bold text-lg mb-4">Ngubi Adventure Forest Camp</h4>
                     <p class="text-gray-400">Your gateway to adventure, fitness, and conservation in the heart of the Kikuyu escarpment forest.</p>
                 </div>
                 <div>
