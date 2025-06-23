@@ -14,7 +14,6 @@
             background-color: #ffffff; /* Page background */
         }
         
-        /* NEW: Hero Section Styling for Fixed Background Effect */
         #hero-section-background {
             position: fixed;
             top: 0;
@@ -42,7 +41,6 @@
             transform: scale(1.05);
         }
 
-        /* NEW: Event Card Styling */
         .event-card {
             position: relative;
             overflow: hidden;
@@ -61,7 +59,6 @@
         }
 
     </style>
-    <!-- NEW: Defining our brand colors from goape.com for easy use -->
     <script>
         tailwind.config = {
           theme: {
@@ -78,18 +75,15 @@
 </head>
 <body class="text-brand-dark">
 
-    <!-- This div holds the fixed background image for the hero section -->
     <div id="hero-section-background"></div>
 
-    <!-- Header & Navigation -->
-    <!-- CHANGE: Menu is now transparent and overlaid on the hero image -->
     <header class="bg-transparent text-white fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-header">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-extrabold tracking-tight">
                 NGUBI ADVENTURE
             </a>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#services" class="font-semibold hover:text-brand-lime">Our Services</a>
+                <a href="#services" class="font-semibold hover:text-brand-lime">Our Experiences</a>
                 <a href="#events" class="font-semibold hover:text-brand-lime">Upcoming Events</a>
                 <a href="#about" class="font-semibold hover:text-brand-lime">Our Story</a>
             </div>
@@ -100,9 +94,8 @@
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
             </button>
         </nav>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-brand-green">
-            <a href="#services" class="block py-3 px-6 font-semibold">Our Services</a>
+            <a href="#services" class="block py-3 px-6 font-semibold">Our Experiences</a>
             <a href="#events" class="block py-3 px-6 font-semibold">Upcoming Events</a>
             <a href="#about" class="block py-3 px-6 font-semibold">Our Story</a>
             <div class="p-4">
@@ -113,8 +106,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <!-- CHANGE: This is now just the content, the background is handled separately -->
     <section class="relative h-screen min-h-[600px] flex items-center justify-center text-white text-center">
         <div class="absolute inset-0 hero-overlay"></div>
         <div class="relative z-10 p-6">
@@ -125,52 +116,51 @@
                 You shouldn't have to sacrifice your health because of a busy schedule. We help you gain control of your health and become part of a supportive community in nature.
             </p>
             <a href="#services" class="bg-brand-lime text-brand-dark font-bold py-4 px-10 text-xl storybrand-button">
-                Book Your Adventure
+                Explore Experiences
             </a>
         </div>
     </section>
 
-    <!-- The rest of the page content will live in its own container to scroll over the background -->
     <div class="content-section relative z-10">
         <main class="container mx-auto px-6 py-24">
+            
             <!-- Services Section -->
-            <!-- CHANGE: Updated to use new color palette and sharp corners -->
+            <!-- CHANGE: This section is now updated with the new service structure -->
             <section id="services" class="text-center mb-24">
-                <h2 class="text-3xl font-bold mb-4">How We Guide You to Success</h2>
-                <p class="max-w-2xl mx-auto text-gray-600 mb-12">With expert trainers and a serene forest location, we’ve helped hundreds of participants build both mental and physical resilience.</p>
+                <h2 class="text-3xl font-bold mb-4">Choose Your Adventure</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 mb-12">We have an experience designed for you, whether you're a corporate team, a family, or a weekend fitness warrior.</p>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Service 1 -->
+                    <!-- Service 1: Team Adventure Package -->
                     <div class="bg-gray-100 shadow-md">
-                        <img src="https://placehold.co/600x400/2C5F2D/FFFFFF?text=Team+Adventure" alt="Group Teambuilding" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Group Adventure & Teambuilding</h3>
-                            <p class="text-gray-600 mb-4">For teams that want to grow stronger together. Bond deeply and leave with experiences that boost morale and cohesion.</p>
-                            <a href="#" class="font-bold text-brand-green hover:underline">Book Your Team Adventure &rarr;</a>
+                        <img src="https://placehold.co/600x400/2C5F2D/FFFFFF?text=Team+Packages" alt="Group Teambuilding" class="w-full h-48 object-cover">
+                        <div class="p-6 text-left">
+                            <h3 class="text-xl font-bold mb-2">Team Adventure Package</h3>
+                            <p class="text-gray-600 mb-4">Our all-inclusive package for groups. Includes guided teambuilding, obstacle course, the Ngubi Trail Quest, and a private picnic area.</p>
+                            <a href="#" class="font-bold text-brand-green hover:underline">Request a Quote &rarr;</a>
                         </div>
                     </div>
-                    <!-- Service 2 -->
+                    <!-- Service 2: Day Adventure Pass -->
                     <div class="bg-gray-100 shadow-md">
-                        <img src="https://placehold.co/600x400/97FB57/222222?text=Weekend+Fitness" alt="Weekend Bootcamp" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Individual Weekend Bootcamp</h3>
-                            <p class="text-gray-600 mb-4">For the busy individual who wants a stronger body and sharper mind. Join our supportive community every Saturday.</p>
-                            <a href="#" class="font-bold text-brand-green hover:underline">Reserve Your Spot &rarr;</a>
+                        <img src="https://placehold.co/600x400/97FB57/222222?text=Day+Pass" alt="Individual enjoying the forest" class="w-full h-48 object-cover">
+                        <div class="p-6 text-left">
+                            <h3 class="text-xl font-bold mb-2">Day Adventure Pass</h3>
+                            <p class="text-gray-600 mb-4">Your ticket to a perfect day out. Start with a Conservation Pass for picnics and trails, then add on activities like our obstacle course or Trail Quest.</p>
+                            <a href="#" class="font-bold text-brand-green hover:underline">Plan Your Day &rarr;</a>
                         </div>
                     </div>
-                    <!-- Service 3 -->
+                    <!-- Service 3: Weekend Bootcamp -->
                     <div class="bg-gray-100 shadow-md md:col-span-2 lg:col-span-1">
-                        <img src="https://placehold.co/600x400/222222/FFFFFF?text=Trail+Quest" alt="Ngubi Trail Quest" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">The Ngubi Trail Quest</h3>
-                            <p class="text-gray-600 mb-4">A unique team challenge using maps and clues to discover the secrets of the forest. Perfect for groups and families.</p>
-                            <a href="#" class="font-bold text-brand-green hover:underline">Start the Quest &rarr;</a>
+                        <img src="https://placehold.co/600x400/222222/FFFFFF?text=Bootcamps" alt="Weekend Bootcamp" class="w-full h-48 object-cover">
+                        <div class="p-6 text-left">
+                            <h3 class="text-xl font-bold mb-2">Weekend Bootcamp</h3>
+                            <p class="text-gray-600 mb-4">Join our powerful, 1.5-hour coached fitness session every Saturday. All-inclusive price for a transformative workout.</p>
+                            <a href="#" class="font-bold text-brand-green hover:underline">Reserve Your Spot &rarr;</a>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Upcoming Events Section -->
-            <!-- CHANGE: Completely new design for this section based on your feedback -->
             <section id="events" class="mb-24">
                  <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold mb-4">Upcoming Events</h2>
@@ -227,7 +217,7 @@
                     <h4 class="font-bold text-lg mb-4">Quick Links</h4>
                     <ul>
                         <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li class="mb-2"><a href="#services" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li class="mb-2"><a href="#services" class="text-gray-400 hover:text-white">Experiences</a></li>
                         <li class="mb-2"><a href="#events" class="text-gray-400 hover:text-white">Events</a></li>
                     </ul>
                 </div>
