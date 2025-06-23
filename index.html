@@ -8,11 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-    <!-- Link to our new external stylesheet -->
     <link rel="stylesheet" href="style.css">
     
     <script>
-        // This part remains here to configure TailwindCSS with our custom colors
         tailwind.config = {
           theme: {
             extend: {
@@ -33,7 +31,7 @@
 
     <div id="hero-section-background"></div>
 
-    <!-- Header will be loaded here by script.js -->
+    <!-- This div will be populated by script.js -->
     <div id="header-placeholder"></div>
 
     <section class="relative h-screen min-h-[600px] flex items-center justify-center text-white text-center">
@@ -60,6 +58,20 @@
                     <p class="max-w-2xl mx-auto text-gray-600">We have an experience designed for you, whether you're a corporate team, a family, or a weekend fitness warrior.</p>
                 </div>
                 <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- CHANGE: This card now links to team-package.html -->
+                    <a href="team-package.html" class="image-card" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop');">
+                        <div class="image-card-overlay"></div>
+                        <div class="card-content">
+                            <h3 class="text-2xl font-extrabold">Team Adventure Package</h3>
+                            <p class="font-semibold mt-2">All-inclusive packages for groups.</p>
+                            <span class="inline-block mt-4 border-2 border-brand-green-light py-2 px-5 font-bold text-brand-dark bg-brand-green-light">
+                                View Package
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- CHANGE: This card now links to day-pass.html -->
                     <a href="day-pass.html" class="image-card" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e-306?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
@@ -70,17 +82,9 @@
                             </span>
                         </div>
                     </a>
-                     <a href="#" class="image-card" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop');">
-                        <div class="image-card-overlay"></div>
-                        <div class="card-content">
-                            <h3 class="text-2xl font-extrabold">Team Adventure Package</h3>
-                            <p class="font-semibold mt-2">All-inclusive packages for groups.</p>
-                            <span class="inline-block mt-4 border-2 border-brand-green-light py-2 px-5 font-bold text-brand-dark bg-brand-green-light">
-                                View Package
-                            </span>
-                        </div>
-                    </a>
-                    <a href="#" class="image-card md:col-span-2 lg:col-span-1" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');">
+                    
+                    <!-- CHANGE: This card now links to bootcamp.html -->
+                    <a href="bootcamp.html" class="image-card md:col-span-2 lg:col-span-1" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <h3 class="text-2xl font-extrabold">Weekend Bootcamp</h3>
@@ -134,7 +138,7 @@
         </main>
     </div>
 
-    <!-- Footer will be loaded here by script.js -->
+    <!-- This div will be populated by script.js -->
     <div id="footer-placeholder"></div>
 
     <!-- Link to our new external javascript file -->
