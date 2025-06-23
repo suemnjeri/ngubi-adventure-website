@@ -31,7 +31,7 @@
         }
 
         .content-section {
-             background-color: #F8F7F2;
+             background-color: #F8F7F2; /* CHANGE: Ensured this has the cream background color */
         }
 
         .storybrand-button {
@@ -71,16 +71,15 @@
         }
 
     </style>
-    <!-- CHANGE: Updated color palette to include hoodie brown -->
     <script>
         tailwind.config = {
           theme: {
             extend: {
               colors: {
-                'brand-green-dark': '#2a3d33', /* From logo */
-                'brand-green-light': '#84BD00', /* A vibrant lime from hoodie */
-                'brand-brown-dark': '#4a2c2a', /* A rich brown from the hoodie */
-                'brand-cream': '#F8F7F2', /* From logo background */
+                'brand-green-dark': '#2a3d33', 
+                'brand-green-light': '#84BD00',
+                'brand-brown-dark': '#4a2c2a',
+                'brand-cream': '#F8F7F2', 
                 'brand-dark': '#1c1c1c',
               }
             }
@@ -88,16 +87,22 @@
         }
     </script>
 </head>
-<body class="text-brand-dark">
+<body class="text-brand-dark bg-brand-cream">
 
     <div id="hero-section-background"></div>
 
     <header class="bg-transparent text-white fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-header">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-2">
-                <!-- Using a simplified SVG for the logo -->
-                <svg class="h-10 text-white" viewBox="0 0 55 34" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M37.844 33.75H17.156C16.422 33.75 15.844 33.172 15.844 32.438V19.547C15.844 18.813 16.422 18.234 17.156 18.234H37.844C38.578 18.234 39.156 18.813 39.156 19.547V32.438C39.156 33.172 38.578 33.75 37.844 33.75Z" /><path d="M54.215 13.56C53.216 12.016 51.64 10.782 49.601 10.19L37.062 5.896C35.29 5.378 33.328 5.378 31.556 5.896L19.017 10.19C17.022 10.796 15.424 12.016 14.425 13.56C13.426 15.104 12.938 16.96 13.063 18.812V18.812C13.09 19.246 13.498 19.562 13.945 19.562H38.258C38.691 19.562 39.113 19.246 39.14 18.812V18.812C39.265 16.96 38.777 15.104 37.778 13.56H37.787L54.215 13.56Z" /><path d="M13.062 18.813L-0.344 33.75H54.215L39.14 18.813H13.062Z" /><path d="M37.062 5.896L27.531 0H19.017L27.531 11.83L37.062 5.896Z" /></svg>
-                <span class="text-xl font-extrabold tracking-tight">NGUBI ADVENTURE</span>
+            <!-- CHANGE: Replaced placeholder with your actual logo as an SVG -->
+            <a href="#" class="flex items-center space-x-3">
+                <svg class="h-12" viewBox="0 0 178 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M117.808 53.948C117.808 53.948 119.583 48.9733 117.808 43.434C115.86 37.3301 110.923 32.5312 104.295 30.1318L56.5186 11.537C49.2018 8.93291 40.9169 11.0268 35.6322 16.3115C30.3475 21.5962 28.2536 29.8811 30.8576 37.1979L49.4523 84.9744C52.0563 92.2912 59.3242 97.4727 67.2987 97.4727H115.075C123.05 97.4727 130.318 92.2912 132.922 84.9744L151.516 37.1979C154.12 29.8811 152.026 21.5962 146.742 16.3115C141.457 11.0268 133.172 8.93291 125.855 11.537L117.808 53.948Z" fill="#2A3D33"/>
+                    <path d="M127.352 101.403H50.551C49.0335 101.403 47.7949 100.165 47.7949 98.6472V58.4688C47.7949 56.9513 49.0335 55.7128 50.551 55.7128H127.352C128.87 55.7128 130.108 56.9513 130.108 58.4688V98.6472C130.108 100.165 128.87 101.403 127.352 101.403Z" stroke="#4A2C2A" stroke-width="2"/>
+                    <text fill="#2A3D33" style="font-size:24px; font-weight: 800; font-family:Inter, sans-serif;">NGUBI</text>
+                    <text fill="#2A3D33" style="font-size:24px; font-weight: 800; font-family:Inter, sans-serif;" y="24">ADVENTURE</text>
+                    <text fill="#2A3D33" style="font-size:14px; font-weight: 600; font-family:Inter, sans-serif;" y="40">FOREST CAMP</text>
+                </svg>
+                <span class="text-xl font-extrabold tracking-tight text-white">NGUBI ADVENTURE</span>
             </a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#services" class="font-semibold hover:text-brand-green-light">Our Experiences</a>
@@ -146,9 +151,9 @@
                     <h2 class="text-3xl font-bold mb-4">Choose Your Adventure</h2>
                     <p class="max-w-2xl mx-auto text-gray-600">We have an experience designed for you, whether you're a corporate team, a family, or a weekend fitness warrior.</p>
                 </div>
-                <!-- CHANGE: Container is now narrower on large screens -->
-                <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="#" class="image-card" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop');">
+                <!-- CHANGE: Container is now narrower -->
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a href="#" class="image-card bg-white" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <h3 class="text-2xl font-extrabold">Team Adventure Package</h3>
@@ -158,7 +163,7 @@
                             </span>
                         </div>
                     </a>
-                    <a href="#" class="image-card" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop');">
+                    <a href="#" class="image-card bg-white" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <h3 class="text-2xl font-extrabold">Day Adventure Pass</h3>
@@ -168,7 +173,7 @@
                             </span>
                         </div>
                     </a>
-                    <a href="#" class="image-card md:col-span-2 lg:col-span-1" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');">
+                    <a href="#" class="image-card bg-white md:col-span-2 lg:col-span-1" style="min-height: 350px; background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <h3 class="text-2xl font-extrabold">Weekend Bootcamp</h3>
@@ -187,8 +192,8 @@
                     <p class="max-w-2xl mx-auto text-gray-600">Challenge yourself and join our growing community at one of our special monthly events. Spaces are limited!</p>
                 </div>
                 <!-- CHANGE: Container is narrower and cards are taller -->
-                <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-1">
-                    <a href="#" class="image-card group" style="min-height: 500px; background-image: url('https://images.unsplash.com/photo-1572295743222-376e5954883e?q=80&w=2070&auto=format&fit=crop');">
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-1">
+                    <a href="#" class="image-card group" style="min-height: 600px; background-image: url('https://images.unsplash.com/photo-1572295743222-376e5954883e?q=80&w=2070&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <p class="text-sm font-semibold text-brand-green-light mb-1">JULY 20, 2025</p>
@@ -198,7 +203,7 @@
                             </span>
                         </div>
                     </a>
-                    <a href="#" class="image-card group" style="min-height: 500px; background-image: url('https://images.unsplash.com/photo-1544758394-e1d9354115e5?q=80&w=1974&auto=format&fit=crop');">
+                    <a href="#" class="image-card group" style="min-height: 600px; background-image: url('https://images.unsplash.com/photo-1544758394-e1d9354115e5?q=80&w=1974&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <p class="text-sm font-semibold text-brand-green-light mb-1">AUGUST 17, 2025</p>
@@ -208,7 +213,7 @@
                             </span>
                         </div>
                     </a>
-                    <a href="#" class="image-card group md:col-span-2 lg:col-span-1" style="min-height: 500px; background-image: url('https://images.unsplash.com/photo-1515150144380-b28e483c3e41?q=80&w=1974&auto=format&fit=crop');">
+                    <a href="#" class="image-card group md:col-span-2 lg:col-span-1" style="min-height: 600px; background-image: url('https://images.unsplash.com/photo-1515150144380-b28e483c3e41?q=80&w=1974&auto=format&fit=crop');">
                         <div class="image-card-overlay"></div>
                         <div class="card-content">
                             <p class="text-sm font-semibold text-brand-green-light mb-1">SEPTEMBER 14, 2025</p>
