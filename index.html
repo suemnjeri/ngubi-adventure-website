@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngubi Adventure Forest Camp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-slide {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .hero-slide.active {
+            display: block;
+            opacity: 1;
+        }
+        .hero-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.1));
+        }
+        .storybrand-button {
+            transition: all 0.3s ease;
+        }
+        .storybrand-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-green-800">
+                Ngubi Adventure
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="text-gray-600 hover:text-green-800">Our Services</a>
+                <a href="#events" class="text-gray-600 hover:text-green-800">Upcoming Events</a>
+                <a href="#about" class="text-gray-600 hover:text-green-800">Our Story</a>
+                <a href="#contact" class="text-gray-600 hover:text-green-800">Contact</a>
+            </div>
+            <a href="#booking" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg storybrand-button hidden md:inline-block">
+                Book Now
+            </a>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#services" class="block py-2 px-6 text-sm text-gray-700">Our Services</a>
+            <a href="#events" class="block py-2 px-6 text-sm text-gray-700">Upcoming Events</a>
+            <a href="#about" class="block py-2 px-6 text-sm text-gray-700">Our Story</a>
+            <a href="#contact" class="block py-2 px-6 text-sm text-gray-700">Contact</a>
+            <div class="p-4">
+                 <a href="#booking" class="bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg storybrand-button w-full text-center block">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-[80vh] min-h-[500px] max-h-[700px] w-full overflow-hidden text-white">
+        <!-- Slideshow Container -->
+        <div id="hero-slider" class="absolute inset-0">
+            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/4CAF50/FFFFFF?text=Team+Building+Fun'); background-size: cover; background-position: center;"></div>
+            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/2196F3/FFFFFF?text=Challenging+Obstacles'); background-size: cover; background-position: center;"></div>
+            <div class="hero-slide" style="background-image: url('https://placehold.co/1600x900/FFC107/FFFFFF?text=Serene+Nature+Walks'); background-size: cover; background-position: center;"></div>
+        </div>
+        <div class="absolute inset-0 hero-overlay"></div>
+
+        <!-- Hero Content -->
+        <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.6);">
+                Stronger Bodies. Sharper Minds. Better Connections.
+            </h1>
+            <p class="text-lg md:text-xl max-w-3xl mb-8" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
+                Escape the routine and discover your strength in nature. We provide transformative adventure experiences that build resilient teams and empowered individuals.
+            </p>
+            <a href="#booking-form" class="bg-orange-500 text-white font-bold py-4 px-10 rounded-lg text-xl shadow-xl storybrand-button">
+                Start Your Adventure
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16">
+
+        <!-- Services Section -->
+        <section id="services" class="text-center mb-24">
+            <h2 class="text-3xl font-bold mb-4">Find Your Adventure</h2>
+            <p class="max-w-2xl mx-auto text-gray-600 mb-12">Whether you're an individual seeking fitness or a group looking to build camaraderie, we have a plan for you.</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1: Group Teambuilding -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://placehold.co/600x400/38A169/FFFFFF?text=Group+Teambuilding" alt="Group of people doing a team building exercise" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Group Adventure & Teambuilding</h3>
+                        <p class="text-gray-600 mb-4">Unite your team with a full day of exciting obstacle courses, nature trails, and collaborative challenges.</p>
+                        <a href="#" class="font-bold text-green-600 hover:text-green-800">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <!-- Service 2: Weekend Bootcamp -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://placehold.co/600x400/DD6B20/FFFFFF?text=Weekend+Bootcamp" alt="Individual on an obstacle course" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Individual Weekend Bootcamp</h3>
+                        <p class="text-gray-600 mb-4">Join our vibrant community every Saturday for a powerful forest-based workout and fitness coaching.</p>
+                        <a href="#" class="font-bold text-green-600 hover:text-green-800">See the Schedule &rarr;</a>
+                    </div>
+                </div>
+                <!-- Service 3: Private Events -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                    <img src="https://placehold.co/600x400/4299E1/FFFFFF?text=Private+Events" alt="A scenic view of the camp set up for a private event" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Custom & Private Bookings</h3>
+                        <p class="text-gray-600 mb-4">Host your own private event, retreat, or customized adventure. We'll help you plan the perfect day.</p>
+                        <a href="#" class="font-bold text-green-600 hover:text-green-800">Inquire Now &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Events Section -->
+        <section id="events" class="bg-green-700 text-white rounded-2xl p-8 md:p-16 mb-24">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-4">Upcoming Events</h2>
+                <p class="max-w-2xl mx-auto opacity-90 mb-12">Challenge yourself and join our growing community at one of our special monthly events. Spaces are limited!</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Event 1 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col">
+                    <img src="https://placehold.co/600x400/F56565/FFFFFF?text=Trail+Run" alt="Trail Run Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-bold mb-2">July Forest Trail Run</h3>
+                    <p class="text-sm opacity-80 mb-4 flex-grow">A scenic 10km run through the beautiful Ngubi Forest trails. All fitness levels welcome.</p>
+                    <a href="#" class="bg-orange-500 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">Register Now</a>
+                </div>
+                <!-- Event 2 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col">
+                    <img src="https://placehold.co/600x400/48BB78/FFFFFF?text=Cycling+Race" alt="Cycling Race Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-bold mb-2">Mountain Bike Enduro</h3>
+                    <p class="text-sm opacity-80 mb-4 flex-grow">Test your skills on our challenging downhill and cross-country mountain bike courses.</p>
+                    <a href="#" class="bg-orange-500 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">Book Your Spot</a>
+                </div>
+                <!-- Event 3 -->
+                 <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col">
+                    <img src="https://placehold.co/600x400/667EEA/FFFFFF?text=Conservation+Day" alt="Conservation Day Graphic" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-bold mb-2">Community Tree Planting Day</h3>
+                    <p class="text-sm opacity-80 mb-4 flex-grow">Join us in our conservation efforts to reforest a section of the camp. Fun for the whole family.</p>
+                    <a href="#" class="bg-orange-500 text-white font-bold py-2 px-6 rounded-lg text-center storybrand-button mt-auto">I'm Interested</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="about" class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Ngubi Adventure</h4>
+                    <p class="text-gray-400">Your gateway to adventure, fitness, and conservation in the heart of the Kikuyu escarpment forest.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li class="mb-2"><a href="#services" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li class="mb-2"><a href="#events" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li class="mb-2"><a href="#booking" class="text-gray-400 hover:text-white">Book Now</a></li>
+                    </ul>
+                </div>
+                <div id="contact">
+                    <h4 class="font-bold text-lg mb-4">Our Mission</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Our Conservation Story</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">About Ngubi Forest</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Community Initiatives</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <!-- Facebook Icon -->
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <!-- Instagram Icon -->
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.064.049-1.644.212-2.126.41a3.17 3.17 0 00-1.138.746 3.17 3.17 0 00-.746 1.138c-.198.482-.361 1.062-.41 2.126-.049 1.023-.06 1.351-.06 3.807s.011 2.784.06 3.808c.049 1.064.212 1.644.41 2.126a3.17 3.17 0 00.746 1.138 3.17 3.17 0 001.138.746c.482.198 1.062.361 2.126.41 1.023.049 1.351.06 3.807.06s2.784-.011 3.808-.06c1.064-.049 1.644-.212 2.126-.41a3.17 3.17 0 001.138-.746 3.17 3.17 0 00.746-1.138c.198-.482-.361-1.062-.41-2.126.049-1.024.06-1.351.06-3.808s-.011-2.784-.06-3.807c-.049-1.064-.212-1.644-.41-2.126a3.17 3.17 0 00-.746-1.138 3.17 3.17 0 00-1.138-.746c-.482-.198-1.062-.361-2.126-.41-1.024-.049-1.351-.06-3.807-.06zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Ngubi Adventure Forest Camp. All Rights Reserved.</p>
+                <p>Website designed by Susan M. & her AI Coach.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Hero Slideshow
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('#hero-slider .hero-slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+            });
+            slides[n].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Initialize slideshow
+        if (totalSlides > 0) {
+            showSlide(currentSlide);
+            setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+    </script>
+</body>
+</html>
