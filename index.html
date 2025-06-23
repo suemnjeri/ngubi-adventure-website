@@ -79,8 +79,9 @@
               colors: {
                 'brand-green-dark': '#2a3d33', 
                 'brand-green-light': '#84BD00',
-                'brand-brown-dark': '#4a2c2a',
-                'brand-cream': '#F8F7F2', 
+                'brand-brown-dark': '#2a1716',
+                'brand-cream': '#4a392a', 
+                'brand-cream-menu': '#404a2a',
                 'brand-dark': '#1c1c1c',
               }
             }
@@ -88,7 +89,7 @@
         }
     </script>
 </head>
-<body class="text-brand-dark bg-brand-cream">
+<body class="text-brand-dark">
 
     <div id="hero-section-background"></div>
 
@@ -97,9 +98,7 @@
             <!-- CHANGE: New simplified and robust SVG logo -->
             <a href="#" class="flex items-center space-x-3">
                  <svg class="h-10 w-auto" viewBox="0 0 152 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M110.208 53.9805L-49.1419 100.315H110.208L63.2629 53.9805H-5.24587Z" fill="#4A2C2A"/>
-                    <path d="M110.208 41.5164C107.939 37.8443 104.537 35.1554 100.151 33.4497L59.9066 18.2715C56.1396 16.7933 51.8804 16.7933 48.1134 18.2715L7.86816 33.4497C3.4836 35.1554 0.0813682 37.8443 -2.18774 41.5164C-4.45675 45.1882 -5.52837 49.5843 -5.24587 53.9804V53.9804C-5.16937 55.242 -4.10912 56.1989 -2.84137 56.1989H60.8584C62.1261 56.1989 63.1864 55.242 63.2629 53.9804V53.9804C63.5454 49.5843 62.4738 45.1882 60.2043 41.5164H60.2301V41.5164L110.208 41.5164Z" fill="#2A3D33"/>
-                    <path d="M59.9062 18.2715L34.0099 0.685547L7.86816 18.2715L34.0099 36.1039L59.9062 18.2715Z" fill="#2A3D33"/>
+                    
                  </svg>
                 <span class="text-xl font-extrabold tracking-tight text-white">NGUBI ADVENTURE</span>
             </a>
@@ -115,7 +114,7 @@
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-green-dark">
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-cream">
             <a href="#services" class="block py-3 px-6 font-semibold">Our Experiences</a>
             <a href="#events" class="block py-3 px-6 font-semibold">Upcoming Events</a>
             <a href="#about" class="block py-3 px-6 font-semibold">Our Story</a>
@@ -143,7 +142,7 @@
     </section>
 
     <!-- CHANGE: Added content-bg class to this div to ensure correct background color -->
-    <div class="content-section relative z-10 content-bg">
+    <div class="content-section relative z-10 bg-brand-cream content-bg">
         <main class="container mx-auto px-6 py-24">
             
             <section id="services" class="mb-24">
@@ -283,10 +282,10 @@
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.remove('bg-transparent', 'text-white');
-                header.classList.add('bg-brand-cream/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
+                header.classList.add('bg-brand-cream-menu/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
             } else {
                 header.classList.add('bg-transparent', 'text-white');
-                header.classList.remove('bg-brand-cream/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
+                header.classList.remove('bg-brand-cream-menu/90', 'backdrop-blur-md', 'text-brand-dark', 'shadow-md');
             }
         });
 
