@@ -1,35 +1,55 @@
 ---
-import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
-import IconArrowNarrowUp from "@/assets/icons/IconArrowNarrowUp.svg";
+// import IconArrowUp from "@/assets/icons/IconArrowUp.svg"; // Arrow up icon. Ensure this SVG exists or the inline SVG is used.
 ---
 
 <div
   id="btt-btn-container"
   class:list={[
-    "fixed end-4 bottom-8 z-50",
-    "md:sticky md:end-auto md:float-end md:me-1",
-    "translate-y-14 opacity-0 transition duration-500",
+    "fixed z-40 flex flex-col gap-y-2", /* Basic fixed properties */
+    "bottom-4 right-4 sm:bottom-8 sm:right-8", /* Responsive positioning (adjust if 4 is too low on mobile) */
+    "translate-y-14 opacity-0 transition duration-500", /* Transition for visibility */
   ]}
 >
   <button
     data-button="back-to-top"
     class:list={[
-      "group relative bg-background px-2 py-1",
+      "group relative bg-accent text-white px-2 py-1",
       "size-14 rounded-full shadow-xl",
       "md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none",
-      "md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg",
+      "md:bg-accent md:bg-clip-padding md:backdrop-blur-lg",
+      "hover:scale-110 transition-transform duration-200",
     ]}
   >
     <span
       id="progress-indicator"
       class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"
     ></span>
-    <IconChevronLeft class="inline-block rotate-90 md:hidden" />
-    <span class="sr-only text-sm group-hover:text-accent md:not-sr-only">
-      <IconArrowNarrowUp class="inline-block size-4" />
-      Back To Top
+    {/* CONSOLIDATED ICON AND TEXT HERE */}
+
+
+    <span class="flex items-center justify-center gap-x-1 md:gap-x-1.5 text-white"> {/* Removed sr-only from here. Added text-white for icon color */}
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-arrow-up size-5 md:size-4"
+      >
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+      <span class="sr-only md:not-sr-only">Back To Top</span> {/* NEW: Text part wrapped in its own sr-only span */}
     </span>
+
+
   </button>
+
+
 </div>
 
 <script is:inline data-astro-rerun>
@@ -46,34 +66,51 @@ import IconArrowNarrowUp from "@/assets/icons/IconArrowNarrowUp.svg";
 
     // Attach click event handler for back-to-top button
     backToTopBtn.addEventListener("click", () => {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth", // Smooth scroll to top
+      });
     });
 
     // Handle button visibility according to scroll position
-    let lastVisible = null;
+    let lastVisible = null; // Track last visibility state to prevent redundant class toggles
     function handleScroll() {
       const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
       const scrollTop = rootElement.scrollTop;
       const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
 
+      // Update progress indicator
       progressIndicator.style.setProperty(
         "background-image",
-        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+        `conic-gradient(var(--color-accent), var(--color-accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
       );
 
-      const isVisible = scrollTop / scrollTotal > 0.3;
+      // Use a simpler scroll threshold for visibility (e.g., show after 200px scroll)
+      const isVisible = window.scrollY > 200; // Directly check scroll position
 
-      if (isVisible !== lastVisible) {
+      if (isVisible !== lastVisible) { // Only toggle classes if visibility state changes
         btnContainer.classList.toggle("opacity-100", isVisible);
         btnContainer.classList.toggle("translate-y-0", isVisible);
         btnContainer.classList.toggle("opacity-0", !isVisible);
         btnContainer.classList.toggle("translate-y-14", !isVisible);
+
+        // NEW: Toggle pointer-events based on visibility
+        if (isVisible) {
+          btnContainer.classList.remove("pointer-events-none");
+          btnContainer.classList.add("pointer-events-auto");
+        } else {
+          btnContainer.classList.remove("pointer-events-auto");
+          btnContainer.classList.add("pointer-events-none");
+        }
+
         lastVisible = isVisible;
       }
+
+
     }
 
-    let ticking = false;
+    // Event listener for scroll
+    let ticking = false; // Flag to optimize scroll event handling
     document.addEventListener("scroll", () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
@@ -83,6 +120,9 @@ import IconArrowNarrowUp from "@/assets/icons/IconArrowNarrowUp.svg";
         ticking = true;
       }
     });
+
+    // Initial call to set visibility on page load (important for cases where page loads scrolled)
+    handleScroll();
   }
   backToTop();
 </script>

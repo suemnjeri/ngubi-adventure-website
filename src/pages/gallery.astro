@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Main from '../layouts/Main.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// NEW: Import the title image for the Gallery page
+import GalleryTitleImage from '/public/images/title-gallery-page2.webp';
+
+// NEW: Import gallery images (make sure these paths match your filenames exactly)
+import gallery1 from '/public/images/gallery-1.webp';
+import gallery2 from '/public/images/gallery-2.webp';
+import gallery3 from '/public/images/gallery-3.webp';
+import gallery4 from '/public/images/gallery-4.webp';
+import gallery5 from '/public/images/gallery-5.webp';
+import gallery6 from '/public/images/gallery-6.webp';
+import gallery7 from '/public/images/gallery-7.webp';
+import gallery8 from '/public/images/gallery-8.webp';
+import gallery9 from '/public/images/gallery-9.webp';
+import gallery10 from '/public/images/gallery-10.webp';
+
+// Array to hold your gallery image data
+const galleryImages = [
+    { src: gallery1.src, alt: 'Happy customers' },
+    { src: gallery2.src, alt: 'Team building activity' },
+    { src: gallery3.src, alt: 'Hiking adventures' },
+    { src: gallery4.src, alt: 'Team building group' },
+    { src: gallery5.src, alt: 'Mountain Biking Challenge' },
+    { src: gallery6.src, alt: 'Team building activity' },
+    { src: gallery7.src, alt: 'Hiking and conservation challenge' },
+    { src: gallery8.src, alt: 'Club mountaining biking' },
+    { src: gallery9.src, alt: 'Hiking adventures' },
+    { src: gallery10.src, alt: 'Hiking adventures' },
+    // Add more entries here if you have more than 10, or update the imports above
+];
+---
+<Layout title="Gallery - Ngubi Adventure Forest Camp">
+  <Header />
+  <Main class="pt-24 bg-surface text-foreground"> {/* Consistent styling for main content */}
+
+    {/* Playful Image Title */}
+    <h1 class="sr-only">Our Photo Gallery</h1> {/* Hidden H1 for SEO/Accessibility */}
+    <div class="text-center mb-6 mx-auto max-w-4xl px-4"> {/* Container for the image title */}
+        <img
+            src={GalleryTitleImage.src}
+            alt="Our Photo Gallery - Moments of Adventure!"
+            width={GalleryTitleImage.width}
+            height={GalleryTitleImage.height}
+            class="w-full h-auto object-contain"
+        />
+    </div>
+    {/* END Playful Image Title */}
+
+    {/* Introduction */}
+    <p class="text-lg text-center max-w-2xl mx-auto mb-6 text-foreground">
+      Relive the moments of adventure, connection, and discovery at Ngubi Forest Camp. Our gallery captures the joy of our guests, the beauty of the forest, and the impact of our conservation efforts.
+    </p>
+
+    {/* Gallery Grid */}
+    <section class="max-w-app mx-auto px-4 py-8">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4"> {/* Responsive grid */}
+        {galleryImages.map((image) => (
+          <div class="relative overflow-hidden rounded-lg shadow-lg aspect-w-1 aspect-h-1 group"> {/* Individual image container */}
+            <img
+              src={image.src}
+              alt={image.alt}
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+            {/* Optional overlay on hover for alt text */}
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="px-4 text-center">{image.alt}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </Main>
+  <Footer />
+</Layout>

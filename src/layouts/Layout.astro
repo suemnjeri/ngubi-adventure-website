@@ -2,7 +2,12 @@
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
+import BackToTopButton from "../components/BackToTopButton.astro";
+import Header from "../components/Header.astro"; // Assuming this is imported
+import Footer from "../components/Footer.astro"; // Assuming this is imported
+// import ThemeScript from '../components/ThemeScript.astro'; // ADD THIS LINE
 import "@/styles/global.css";
+
 
 export interface Props {
   title?: string;
@@ -132,8 +137,21 @@ const structuredData = {
 
     <script is:inline src="/toggle-theme.js"></script>
   </head>
+
+ <!-- <body>
+    <ThemeScript /> 
+    <OpeningSoonBanner /> {/* NEW: The Opening Soon banner */}
+    <Header />
+    <div class="relative min-h-screen">
+      <slot />
+    </div>
+    <BackToTopButton /> {/* This line should be present */}
+  </body> -->
+
+
   <body>
     <slot />
+    <BackToTopButton /> {/* This line should be present */}
   </body>
 </html>
 

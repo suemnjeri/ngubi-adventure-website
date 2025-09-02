@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+// import Main from '../components/Main.astro';
+import Main from '../layouts/Main.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LinkButton from '../components/LinkButton.astro';
+
+// Import title image
+import AboutTitleImage from '/public/images/title-about-page.webp';
+// Import images for content sections
+import StoryBackground from '/public/images/about-our-story-bg1.webp'; // Placeholder for the background of the history section
+import FounderImage from '/public/images/gitau-njoroge.webp'; // Placeholder for the founder's photo
+---
+<Layout title="About Us - Ngubi Adventure Forest Camp">
+  <Header />
+  <Main class="pt-24 bg-surface text-foreground">
+
+    {/* Playful Image Title */}
+    <h1 class="sr-only">Our Story</h1>
+    <div class="text-center mb-2 mx-auto max-w-4xl px-4">
+        <img
+            src={AboutTitleImage.src}
+            alt="Our Story - About Ngubi Adventure Forest Camp"
+            width={AboutTitleImage.width}
+            height={AboutTitleImage.height}
+            class="w-full h-auto object-contain"
+        />
+    </div>
+    {/* END Playful Image Title */}
+
+    {/* Section 1: Our Journey and History */}
+    <section class="relative hero-full-width h-[500px] sm:h-[500px]  mb-2 flex items-center bg-cover bg-center" style={`background-image: url('${StoryBackground.src}');`}>
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="relative z-10 max-w-2xl mx-auto px-4 py-8 sm:py-12 text-white text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-4">Our Journey</h2>
+            <p class="text-lg sm:text-xl leading-relaxed">
+                Our story began in 2017 with a bold government tender application to lease a piece of the Ngubi Forest, within the greater Uplands forest system. Eight years later, after countless government offices, helpful staff, meticulous paperwork, and the support of many dedicated individuals, we have learnt lessons in  patience, faith, and immense gratitude.
+            </p>
+            <p class="text-lg sm:text-xl leading-relaxed mt-4">
+                Today, our doors are finally open, and we are ready to welcome you to this wonderful piece of God's creation. We invite you to create memories, share adventures, and discover the wonder of this special forest alongside us.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- {/* Section 1: Our Journey and History - Shorter Banner Version */}
+    <section class="relative w-full h-[300px] sm:h-[400px] mb-12 flex items-center justify-center bg-cover bg-center" style={`background-image: url('${StoryBackground.src}');`}>
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="relative z-10 max-w-2xl px-4 text-white text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Our Journey</h2>
+            <p class="text-lg leading-relaxed hidden sm:block">
+                Our story began in 2017 with a bold application for a government lease for a piece of the Ngubi Forest, within the greater Uplands forest system. Over the next eight years, a journey of countless government offices, meticulous paperwork, and the support of many dedicated individuals taught us lessons in <strong>patience, faith, and immense gratitude.</strong>
+            </p>
+        </div>
+    </section> -->
+    
+    {/* Section 2: Our Founder - Zigzag Layout */}
+    <section class="max-w-app mx-auto px-4 py-8 sm:py-12 mb-4 text-foreground">
+        <div class="text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-8 text-accent">Our Founder</h2>
+        </div>
+        <div class="flex flex-col md:flex-row items-center md:space-x-8">
+            {/* Image on the left */}
+            <div class="md:w-1/2 mb-6 md:mb-0 relative rounded-lg overflow-hidden shadow-lg aspect-w-1 aspect-h-1 md:aspect-w-3 md:aspect-h-4">
+                <img
+                    src={FounderImage.src}
+                    alt="Photo of Gitau Njoroge, founder of Ngubi Adventure Forest Camp"
+                    width={FounderImage.width}
+                    height={FounderImage.height}
+                    class="w-full h-full object-cover rounded-lg"
+                />
+                <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
+            </div>
+            {/* Content on the right */}
+            <div class="md:w-1/2 text-text-muted">
+                <!-- <p class="text-lg mb-4">
+                    <strong>Gitau Njoroge</strong>
+                </p> -->
+                <p class="mb-2">
+                    <strong>Gitau Njoroge</strong> saw potential where many did not and followed through with a resilience few could muster. His journey was paved with the unwavering support of mentors, encouragers, cheerleaders, and prayer partners who believed in the vision. He brings a unique blend of business acumen and a profound connection to nature that is the very foundation of Ngubi Adventure Forest Camp.
+                </p>
+                <p class="mb-4">
+                    With a deep passion for connecting people with nature, Gitau has a long history of organizing group hikes and outdoor activities. He is dedicated to conservation and promotes sustainable practices as a means of fostering community and environmental stewardship.
+                </p>
+            </div>
+        </div>
+    </section>
+
+  </Main>
+  <Footer />
+</Layout>

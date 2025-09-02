@@ -1,0 +1,13 @@
+<section class="max-w-app mx-auto px-4 py-12 text-center bg-surface-light rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold mb-4 text-accent">Get Updates from Ngubi Adventure</h2>
+  <p class="text-lg text-light-text-on-dark-bg mb-8 max-w-2xl mx-auto">
+    Be the first to know about our official opening, special events, and new programs.
+  </p>
+  <form name="newsletter-signup" method="POST" data-netlify="true" class="flex flex-col sm:flex-row justify-center max-w-xl mx-auto gap-4" action="/thank-you">
+    <input type="hidden" name="form-name" value="newsletter-signup" />
+    <input type="email" name="email" required placeholder="Enter your email address" aria-label="Email address for newsletter" class="flex-grow px-4 py-3 rounded-full border border-border focus:outline-none focus:shadow-outline bg-white text-foreground dark:bg-gray-700 dark:text-white" />
+    <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-accent text-white rounded-full font-semibold hover:bg-accent-dark transition-colors duration-200 shadow-lg">
+      Sign Up
+    </button>
+  </form>
+</section>

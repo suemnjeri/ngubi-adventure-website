@@ -1,0 +1,106 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Main from '../../layouts/Main.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import LinkButton from '../../components/LinkButton.astro';
+
+// NEW: Import the title image
+import TeamBuildingServiceTitleImage from '/public/images/title-teambuilding-service2.webp';
+---
+<Layout title="Group Adventure & TeamBuilding - Ngubi Adventure Forest Camp">
+  <Header />
+
+
+  <Main>
+    <h1 class="sr-only">Group Adventure & TeamBuilding</h1> {/* Hidden H1 for SEO/Accessibility */}
+    <div class="text-center mb-8 mx-auto max-w-4xl px-4"> {/* Container for the image title */}
+        <img
+            src={TeamBuildingServiceTitleImage.src}
+            alt="Group Adventure & TeamBuilding"
+            width={TeamBuildingServiceTitleImage.width}
+            height={TeamBuildingServiceTitleImage.height}
+            class="w-full h-auto object-contain"
+        />
+    </div>
+    {/* END Playful Image Title */}
+
+    {/* Group-teambuilding Intro Section - More Inviting */}
+    <section class="mb-1">
+      <p class="text-lg text-center text-text-muted max-w-2xl mx-auto">
+        Forge stronger bonds and unleash collective potential amidst the breathtaking backdrop of Ngubi Forest. Our bespoke team-building programs are designed for corporate groups, church members, and clubs eager to grow together, not just in an office, but in the heart of nature.
+      </p>
+      <blockquote class="text-xl italic font-light text-center text-foreground mt-8 px-4 border-l-4 border-accent pl-4 max-w-xl mx-auto">
+        "Great things are done by a series of small things brought together."
+        <cite class="block text-sm not-italic mt-2">- Vincent Van Gogh</cite>
+      </blockquote>
+    </section>
+
+    {/* Zigzag Section 1: Image Left, Text Right (Obstacle Courses & Ropes) */}
+    <section class="max-w-app mx-auto px-4 py-8 sm:py-6 flex flex-col md:flex-row items-center md:space-x-8 mb-1">
+      <div class="md:w-1/2 mb-6 md:mb-0 relative rounded-lg overflow-hidden shadow-lg">
+        <img src="/images/teambuilding-zigzag-1.webp" alt="Group on obstacle course" class="w-full h-auto object-cover rounded-lg">
+        <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
+      </div>
+      <div class="md:w-1/2 text-text-muted">
+        <h2 class="text-2xl font-bold mb-4 text-accent">Challenge Together, Grow Together</h2>
+        <p class="mb-4">
+          Push your limits and discover new strengths on our thoughtfully designed ground-based obstacle courses and thrilling high ropes course built between trees. Participants will enjoy the forest from a unique perspective while safely harnessed. These activities require communication, trust, and creative thinking, fostering genuine camaraderie and physical resilience within your team.
+        </p>
+        <ul class="list-disc list-inside text-sm mt-4 space-y-1">
+            <li>Ground-Based Obstacle Courses</li>
+            <li>Forest Trail Quest and Scavenger Hunt</li>
+            <li>Customized Team Challenges</li>
+        </ul>
+      </div>
+    </section>
+
+    {/* Zigzag Section 2: Text Left, Image Right (Nature & Conservation) */}
+    <section class="max-w-app mx-auto px-4 py-8 sm:py-6 flex flex-col md:flex-row-reverse items-center md:space-x-reverse md:space-x-8 mb-1">
+      <div class="md:w-1/2 mb-6 md:mb-0 relative rounded-lg overflow-hidden shadow-lg">
+        <img src="/images/teambuilding-zigzag-2.webp" alt="Team collaborating in nature" class="w-full h-auto object-cover rounded-lg">
+        <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
+      </div>
+      <div class="md:w-1/2 text-text-muted">
+        <h2 class="text-2xl font-bold mb-4 text-accent">Connect with Nature, Inspire Action</h2>
+        <p class="mb-4">
+          Beyond the thrill, our programs subtly weave in elements of environmental stewardship. Your team can enjoy designated nature walk trails and participate in conservation-related efforts like tree planting or guided talks on forest preservation. This unique blend ensures your team building contributes positively to both your group and the local ecosystem. All while adhering to the highest standards of environmental preservation.
+        </p>
+        <ul class="list-disc list-inside text-sm mt-4 space-y-1">
+            <li>Guided Nature Walks</li>
+            <li>Conservation Activities</li>
+            <li>Delicious Lunch & Refreshments</li>
+        </ul>
+      </div>
+    </section>
+
+    {/* Call to Action & Inquiry Section */}
+    <section class="max-w-app mx-auto px-4 py-8 sm:py-8 text-center">
+      <h2 class="text-3xl font-bold mb-6 text-accent">Ready to Transform Your Team?</h2>
+      <p class="text-lg text-text-muted mb-8 max-w-2xl mx-auto">
+        Elevate your team's cohesion and resilience in an unforgettable natural setting. We'll work with you to craft a program that perfectly aligns with your objectives.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <LinkButton
+          href="/booking"
+          class="inline-block px-8 py-4 text-lg bg-accent text-white rounded-full font-semibold whitespace-nowrap hover:bg-accent-dark hover:text-white transition-colors duration-200 shadow-lg"
+          ariaLabel="Book Your Team Building Event"
+          title="Book Your Team Building Event"
+        >
+          Book Your Team Building Event
+        </LinkButton>
+        <LinkButton
+          href="/contact"
+          class="inline-block px-8 py-4 text-lg bg-white text-accent rounded-full font-semibold whitespace-nowrap hover:bg-gray-200 hover:text-accent transition-colors duration-200 shadow-lg"
+          ariaLabel="Inquire About Custom Programs"
+          title="Inquire About Custom Programs"
+        >
+          Inquire About Custom Programs
+        </LinkButton>
+      </div>
+    </section>
+  </Main>
+
+
+  <Footer />
+</Layout>

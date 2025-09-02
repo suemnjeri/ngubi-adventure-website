@@ -1,23 +1,45 @@
+/* src/styles/global.css */
+
+@import "@splidejs/splide/dist/css/splide.min.css"; /* NEW: Splide.js core CSS */
+
 @import "tailwindcss";
 @import "./typography.css";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-:root,
+
+
+:root, /* Light Theme */
 html[data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --muted: #e6e6e6;
-  --border: #ece9e9;
+  --background: #F8F4F0; /* NEW: This is now the bright main background for the body */
+  --foreground: #2A322A; /* NEW: Dark text color for light backgrounds (default for body text) */
+  --accent: #D2691E;     /* Earthy Orange/Red #D2691E*/
+  --accent-dark: #B85C1A; /* Darker accent for hover */
+  --muted: #504C48;      /* Darker muted text on light backgrounds */
+  --border: #C0BCB8;     /* Light border */
+  --surface: var(--background); /* Surface/card background matches bright body */
+  --link-hover: #D2691E;
+  --background-overlay: rgba(0, 0, 0, 0.7); /* For event card text overlay */
+  /* NEW: Define specific dark color for header/footer in light mode */
+  --dark-header-footer-bg: #2A322A;
+  /* NEW: Define specific light text color for elements on dark backgrounds */
+  --light-text-on-dark-bg: #FCF6E9;
 }
 
-html[data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --muted: #343f60bf;
-  --border: #ab4b08;
+html[data-theme="dark"] { /* Dark Theme */
+  --background: #1A201A; /* Deep forest green/charcoal (entire site background) */
+  --foreground: #FCF6E6; /* Light text for dark backgrounds (adjusted slightly for subtle warmth) */
+  --accent: #FF6B00;
+  --accent-dark: #E65A00;
+  --muted: #808880;
+  --border: #606960;
+  --surface: var(--background); /* Surface matches dark background */
+  --link-hover: #FF6B00;
+  --background-overlay: rgba(0, 0, 0, 0.7);
+  /* Header/footer in dark mode will just be the background */
+  --dark-header-footer-bg: var(--background);
+  /* Text on dark backgrounds is foreground */
+  --light-text-on-dark-bg: var(--foreground);
 }
 
 @theme inline {
@@ -26,6 +48,12 @@ html[data-theme="dark"] {
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-link-hover: var(--link-hover);
+  --color-background-overlay: var(--background-overlay);
+  /* NEW Mappings for the new variables */
+  --color-dark-header-footer-bg: var(--dark-header-footer-bg);
+  --color-light-text-on-dark-bg: var(--light-text-on-dark-bg);
 }
 
 @layer base {
@@ -49,8 +77,8 @@ html[data-theme="dark"] {
     cursor: pointer;
   }
   section,
-  footer {
-    @apply mx-auto max-w-app px-4;
+  footer { /* REMOVE mx-auto max-w-app px-4 from here for sections in main */
+    /* @apply mx-auto max-w-app px-4; */ /* COMMENT OR REMOVE THIS LINE */
   }
 }
 
@@ -67,3 +95,45 @@ html[data-theme="dark"] {
 :target {
   scroll-margin-block: 1rem;
 }
+
+
+/* Custom styles for full-width hero section */
+.hero-full-width {
+    width: 100vw; /* Take full viewport width */
+    margin-left: calc(50% - 50vw); /* Shift left to compensate for centering */
+    max-width: none !important; /* Force no max-width */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+/* Adjust padding for small screens within the hero content */
+.hero-full-width .max-w-app {
+    padding-left: 1rem; /* Default Tailwind px-4 is 1rem */
+    padding-right: 1rem; /* Default Tailwind px-4 is 1rem */
+}
+
+/* Small screen adjustments for the hero */
+@media (max-width: 639px) { /* Tailwind's 'sm' breakpoint is 640px */
+    .hero-full-width {
+        padding-left: 0; /* Remove padding if any on the section itself */
+        padding-right: 0;
+    }
+}
+
+/* Custom style to force semi-transparent background on event card text area */
+.event-card-text-overlay {
+    background-color: var(--color-background-overlay) !important; /* Use the mapped variable */
+}
+
+
+
+
+
+/* src/styles/global.css - Add this at the very end of the file */
+
+/* Fix for bold text in dark mode within Markdown content */
+.prose strong {
+    color: var(--color-accent) !important; /* Make bold text pop with accent color */
+}
+/* If you also want to style standard p tags or li tags in dark mode for better visibility,
+   you might need to add text-foreground to their parents or define custom classes.
+   But for bold, accent color is a good choice. */

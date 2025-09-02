@@ -1,0 +1,151 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Main from '../../layouts/Main.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import LinkButton from '../../components/LinkButton.astro';
+
+// Import a playful title image for the whole page
+import AdventuresTitleImage from '/public/images/title-adventure-outings1.webp'; // Placeholder for new image
+// Import images for each section
+import HikingImage from '/public/images/title-hiking-page.webp'; // From your new images
+import MtbImage from '/public/images/title-mtb-page.webp'; // From your new images
+import PicnicImage from '/public/images/picnic-card-bg1.webp'; // Placeholder for picnic
+---
+<Layout title="Hiking, Biking & Picnic - Ngubi Adventure Forest Camp">
+  <Header />
+  <Main class="pt-24 bg-surface text-foreground">
+
+    {/* Playful Image Title for Combined Services */}
+    <h1 class="sr-only">Forest Adventures: Hiking, Mountain Biking & Picnicking</h1>
+    <div class="text-center mb-2 mx-auto max-w-4xl px-4">
+        <img
+            src={AdventuresTitleImage.src}
+            alt="Forest Adventures: Hiking, Mountain Biking & Picnicking"
+            width={AdventuresTitleImage.width}
+            height={AdventuresTitleImage.height}
+            class="w-full h-auto object-contain"
+        />
+    </div>
+
+    {/* Introduction with Quote */}
+    <section class="mb-2">
+      <p class="text-lg text-center text-text-muted max-w-2xl mx-auto">
+        Experience the best of Ngubi Forest with activities designed to get you moving, exploring, and connecting with nature. Whether you prefer the thrill of a trail, the challenge of a bike, or the tranquility of a picnic, we have an adventure waiting for you.
+      </p>
+      <blockquote class="text-xl italic font-light text-center text-foreground mt-8 px-4 border-l-4 border-accent pl-4 max-w-xl mx-auto">
+        "I go to nature to be soothed and healed, and to have my senses put in order."
+        <cite class="block text-sm not-italic mt-2">- John Burroughs</cite>
+      </blockquote>
+    </section>
+
+    {/* Section 1: Hiking Adventures with Book Now Button */}
+    <section id="hiking" class="max-w-app mx-auto px-4 py-8 sm:py-12 flex flex-col md:flex-row items-center md:space-x-8 mb-2">
+      <div class="md:w-1/2 mb-6 md:mb-0 relative rounded-lg overflow-hidden shadow-lg aspect-w-1 aspect-h-1 md:aspect-w-3 md:aspect-h-4">
+        <img src={HikingImage.src} alt="Scenic hiking trail through the forest" class="w-full h-full object-cover rounded-lg">
+        <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
+      </div>
+      <div class="md:w-1/2 text-text-muted">
+        <h2 class="text-2xl font-bold mb-4 text-accent">Hiking Adventures</h2>
+        <p class="mb-2">
+          Step onto our well-maintained trails and discover the hidden beauty of the Kikuyu Escarpment Forest. Our guided hikes are designed for all fitness levels, offering breathtaking views, and a chance to learn about the forest's unique biodiversity. Perfect for a refreshing day outdoors.
+        </p>
+        <p class="mb-2">
+          <strong>Includes:</strong> Guided trail hike, safety briefing, and an optional pre-booked lunch to enjoy amidst nature.
+        </p>
+        <div class="text-center md:text-left mt-8">
+            <LinkButton
+                href="/booking"
+                class="inline-block px-8 py-4 text-lg bg-accent text-white rounded-full font-semibold whitespace-nowrap hover:bg-accent-dark hover:text-white transition-colors duration-200 shadow-lg"
+                ariaLabel="Book Your Hiking Adventure"
+                title="Book Your Hiking Adventure"
+            >
+                Book Now
+            </LinkButton>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 2: Mountain Biking with Book Now Button */}
+    <section id="mt-biking" class="max-w-app mx-auto px-4 py-8 sm:py-12 flex flex-col md:flex-row-reverse items-center md:space-x-reverse md:space-x-8 mb-2">
+      <div class="md:w-1/2 mb-2 md:mb-0 relative rounded-lg overflow-hidden shadow-lg aspect-w-1 aspect-h-1 md:aspect-w-3 md:aspect-h-4">
+        <img src={MtbImage.src} alt="Mountain biker on a thrilling forest trail" class="w-full h-full object-cover rounded-lg">
+        <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
+      </div>
+      <div class="md:w-1/2 text-text-muted">
+        <h2 class="text-2xl font-bold mb-2 text-accent">Mountain Biking</h2>
+        <p class="mb-4">
+          Feel the rush as you navigate our thrilling mountain bike trails. Our routes are suitable for both beginners and experienced riders, offering a dynamic way to experience the forest. Bring your own bike and gear, and get ready for an adrenaline-pumping ride.
+        </p>
+        <p class="mb-2">
+          <strong>Includes:</strong> Trail access, safety briefing, and an optional pre-booked packed lunch to refuel after your ride.
+        </p>
+        <div class="text-center md:text-left mt-8">
+            <LinkButton
+                href="/booking"
+                class="inline-block px-8 py-4 text-lg bg-accent text-white rounded-full font-semibold whitespace-nowrap hover:bg-accent-dark hover:text-white transition-colors duration-200 shadow-lg"
+                ariaLabel="Book Your Mountain Biking Session"
+                title="Book Your Mountain Biking Session"
+            >
+                Book Now
+            </LinkButton>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 3: Forest Stopover & Picnic with Book Now Button */}
+    <section id="picnic" class="max-w-app mx-auto px-4 py-8 sm:py-12 flex flex-col md:flex-row items-center md:space-x-8 mb-2">
+      <div class="md:w-1/2 mb-2 md:mb-0 relative rounded-lg overflow-hidden shadow-lg aspect-w-1 aspect-h-1 md:aspect-w-3 md:aspect-h-4">
+        <img src={PicnicImage.src} alt="Family enjoying a picnic in the forest" class="w-full h-full object-cover rounded-lg">
+        <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
+      </div>
+      <div class="md:w-1/2 text-text-muted">
+        <h2 class="text-2xl font-bold mb-2 text-accent">Forest Stopover & Picnic</h2>
+        <p class="mb-2">
+          Find a serene spot and enjoy a peaceful day surrounded by nature. Our picnic grounds offer a tranquil escape from the city, perfect for individuals, couples, or families looking for a quiet retreat. Please bring your own food and drinks, and enjoy the beauty of the forest.
+        </p>
+        <p class="mb-2">
+          <strong>Includes:</strong> Designated picnic spot access and nature strolls.
+        </p>
+        <div class="text-center md:text-left mt-8">
+            <LinkButton
+                href="/booking"
+                class="inline-block px-8 py-4 text-lg bg-accent text-white rounded-full font-semibold whitespace-nowrap hover:bg-accent-dark hover:text-white transition-colors duration-200 shadow-lg"
+                ariaLabel="Book Your Picnic Spot"
+                title="Book Your Picnic Spot"
+            >
+                Book Now
+            </LinkButton>
+        </div>
+      </div>
+    </section>
+
+    {/* Call to Action & Inquiry Section (Removed redundant buttons) */}
+    <section class="max-w-app mx-auto px-4 py-8 sm:py-12 text-center">
+      <h2 class="text-3xl font-bold mb-2 text-accent">Ready for Your Next Adventure?</h2>
+      <p class="text-lg text-text-muted mb-2 max-w-2xl mx-auto">
+        Book an adventure that gets you moving, exploring, and connecting with the forest today.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <LinkButton
+          href="/booking"
+          class="inline-block px-8 py-4 text-lg bg-accent text-white rounded-full font-semibold whitespace-nowrap hover:bg-accent-dark hover:text-white transition-colors duration-200 shadow-lg"
+          ariaLabel="Book Your Adventure"
+          title="Book Your Adventure"
+        >
+          Book Now
+        </LinkButton>
+        <LinkButton
+          href="/contact"
+          class="inline-block px-8 py-4 text-lg bg-white text-accent rounded-full font-semibold whitespace-nowrap hover:bg-gray-200 hover:text-accent transition-colors duration-200 shadow-lg"
+          ariaLabel="Contact Us For More Info"
+          title="Contact Us For More Info"
+        >
+          Contact Us For More Info
+        </LinkButton>
+      </div>
+    </section>
+
+  </Main>
+  <Footer />
+</Layout>

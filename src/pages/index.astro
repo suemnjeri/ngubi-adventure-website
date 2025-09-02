@@ -3,119 +3,431 @@ import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
 import LinkButton from "@/components/LinkButton.astro";
-import Card from "@/components/Card.astro";
 import Hr from "@/components/Hr.astro";
-import getSortedPosts from "@/utils/getSortedPosts";
-import IconRss from "@/assets/icons/IconRss.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
-import { SOCIALS } from "@/constants";
 
-const posts = await getCollection("blog");
+// NEW: Import the 5 service icon images
+import iconPicnic from '/public/images/icon-picnic.png';
+import iconTeambuilding from '/public/images/icon-teambuilding.png';
+import iconConservation from '/public/images/icon-conservation.png';
+import iconHiking from '/public/images/icon-hiking.png';
+import iconMtb from '/public/images/icon-mtb.png';
+import iconCamping from '/public/images/icon-camping.png';
 
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+// // NEW: Import the 4 hero slideshow images
+// import heroSlide1 from '/public/images/hero-slide-1.webp';
+// import heroSlide2 from '/public/images/hero-slide-2.webp';
+// import heroSlide3 from '/public/images/hero-slide-3.webp';
+// import heroSlide4 from '/public/images/hero-slide-4.webp';
+
+// const events = (await getCollection('events')).sort(
+//   (a, b) => a.data.eventDate.valueOf() - b.data.eventDate.valueOf()
+// );
+const events = (await getCollection('events'))
+  .filter((event) => !event.data.draft) // ADDED THIS LINE
+  .sort((a, b) => a.data.eventDate.valueOf() - b.data.eventDate.valueOf());
+
+// const events = (await getCollection('events')).sort(
+//   (a, b) => b.data.eventDate.valueOf() - a.data.pubDatetime.valueOf() // Ensure this is correct if blog posts are still relevant
+// );
+
+function formatDate(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+}
 ---
 
 <Layout>
-  <Header />
-  <main id="main-content" data-layout="index">
-    <section id="hero" class="pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
+  <Header class="bg-background" /> {/* ADD bg-background to Header */}
+
+  
+  {/* --- START OF FULL-WIDTH HERO SECTION (VIDEO BACKGROUND) --- */}
+  <section id="hero" class="relative hero-full-width py-36 sm:py-40 overflow-hidden min-h-screen"> {/* py- values still control height. Added overflow-hidden. */}
+    {/* Background Video Container */}
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto" {/* Preload attribute to help with faster loading */}
+      class="absolute inset-0 w-full h-full object-cover"
+      aria-label="Background video of Ngubi Forest activities"
+    >
+      <source src="/videos/hero-background-video.webm" type="video/webm" />
+      <source src="/videos/hero-background-video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    {/* Dark Overlay (remains for readability) */}
+    <div class="absolute inset-0 bg-black opacity-20"></div>
+
+    {/* Hero Content (Text and Buttons) - remains overlaid */}
+    <div class="relative z-10 max-w-app mx-auto px-4 pt-48"> {/* pt-48 to push content down as before */}
+      <h1 class="my-4 text-2xl font-bold sm:my-8 sm:text-4xl leading-tight text-white">
+        Unleash Your Potential in Ngubi Forest:
       </h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="inline-block"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
-
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
+      <p class="text-lg sm:text-xl mt-4 mb-12 font-light text-white">
+        <strong class="text-accent">Opening Soon!</strong>Experience enriching nature-based adventures, foster teamwork, and connect with Kenya's vital Kikuyu Escarpment Forest.
       </p>
-      <p class="mt-2">
-        Read the blog posts or check
+      <div class="flex flex-col sm:flex-row gap-4">
         <LinkButton
-          class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
+          href="/booking"
+          class="inline-block px-6 py-2 text-lg bg-accent text-white rounded-full font-semibold whitespace-nowrap hover:bg-accent-dark hover:text-white transition-colors duration-200 shadow-lg"
+          ariaLabel="Book Your Adventure Now"
+          title="Book Your Adventure Now"
         >
-          README
-        </LinkButton> for more info.
-      </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    <Hr />
-
-    {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured" class="pt-12 pb-6">
-            <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
-            <ul>
-              {featuredPosts.map(data => (
-                <Card variant="h3" {...data} />
-              ))}
-            </ul>
-          </section>
-          {recentPosts.length > 0 && <Hr />}
-        </>
-      )
-    }
-
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
-          <ul>
-            {recentPosts.map(
-              (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
-            )}
-          </ul>
-        </section>
-      )
-    }
-
-    <div class="my-8 text-center">
-      <LinkButton href="/posts/">
-        All Posts
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
+          Book Now
+        </LinkButton>
+        <LinkButton
+          href="/services"
+          class="inline-block px-6 py-2 text-lg bg-white text-accent rounded-full font-semibold whitespace-nowrap hover:bg-gray-200 hover:text-accent transition-colors duration-200 shadow-lg"
+          ariaLabel="Explore Our Adventures"
+          title="Explore Our Adventures"
+        >
+          Explore Our Adventures
+        </LinkButton>
+      </div>
     </div>
+  </section>
+{/* --- END OF FULL-WIDTH HERO SECTION (VIDEO BACKGROUND) --- */}
+
+
+
+  {/* Main content area - this will inherit max-w-app from global.css */}
+  <main id="main-content" class="pt-1"> {/* Added pt-24 */}
+    <Hr /> {/* Separator below the Hero */}
+
+    {/* --- START OF SERVICES SECTION --- */}
+    <section class="py-12 sm:py-16 bg-surface text-foreground">
+      <div class="max-w-app mx-auto px-4">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-center text-accent">
+          Our Adventures & Experiences
+        </h2>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-center text-accent">
+          (Coming Soon!)
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
+          
+
+          {/* CARD 1: Hiking Adventures */}
+          <a href="/services/forest-adventures#hiking" class="block bg-surface p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <img src={iconHiking.src} alt="Hiking icon" class="mx-auto h-16 w-16 mb-4 rounded-full"/>
+            <h3 class="text-2xl font-semibold mb-3 text-accent text-center">Hiking Adventures</h3>
+            <p class="text-foreground-light-bg mb-4 text-center">
+              Step onto our scenic, well-maintained trails for a guided hike.
+            </p>
+            <span class="inline-flex items-center text-accent font-medium group mx-auto">
+              Learn More
+              <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </span>
+          </a>
+
+          {/* CARD 2: Mountain Biking */}
+          <a href="/services/forest-adventures#mt-biking" class="block bg-surface p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <img src={iconMtb.src} alt="Mountain biking icon" class="mx-auto h-16 w-16 mb-4 rounded-full"/>
+            <h3 class="text-2xl font-semibold mb-3 text-accent text-center">Mountain Biking</h3>
+            <p class="text-foreground-light-bg mb-4 text-center">
+              Navigate our thrilling mountain bike trails suitable for all skill levels.
+            </p>
+            <span class="inline-flex items-center text-accent font-medium group mx-auto">
+              Learn More
+              <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </span>
+          </a>
+
+          {/* CARD 3: Overnight Camping (NEW) */}
+          <a href="/services/group-adventure#camping" class="block bg-surface p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <img src={iconCamping.src} alt="Camping icon" class="mx-auto h-16 w-16 mb-4 rounded-full"/>
+            <h3 class="text-2xl font-semibold mb-3 text-accent text-center">Overnight Camping</h3>
+            <p class="text-foreground-light-bg mb-4 text-center">
+              Experience the magic of Ngubi Forest under the stars with bonfires and storytelling.
+               <!-- Our campsite offers a safe and equipped space for groups to enjoy bonfires, storytelling, and guided night walks. -->
+            </p>
+            <span class="inline-flex items-center text-accent font-medium group mx-auto">
+              Learn More
+              <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </span>
+          </a>
+
+          {/* CARD 4: Forest stopover and Picnic */}
+          <a href="/services/forest-adventures#picnic" class="block bg-surface p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <img src={iconPicnic.src} alt="Picnic icon" class="mx-auto h-16 w-16 mb-4 rounded-full"/>
+            <h3 class="text-2xl font-semibold mb-3 text-accent text-center">Forest stop and Picnic</h3>
+            <p class="text-foreground-light-bg mb-4 text-center">
+              Enjoy a serene spot in the forest for a tranquil escape.
+            </p>
+            <span class="inline-flex items-center text-accent font-medium group mx-auto">
+              Learn More
+              <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </span>
+          </a>
+
+          <!-- {/* CARD 4: Group Adventure & TeamBuilding Package */}
+          <a href="/services/group-teambuilding" class="block bg-surface p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <img src={iconTeambuilding.src} alt="Teambuilding icon" class="mx-auto h-16 w-16 mb-4 rounded-full"/>
+            <h3 class="text-2xl font-semibold mb-3 text-accent text-center">Group Adventure and TeamBuilding</h3>
+            <p class="text-foreground-light-bg mb-4 text-center">
+              For groups looking to grow stronger together.
+            </p>
+            <span class="inline-flex items-center text-accent font-medium group mx-auto">
+              Learn More
+              <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </span>
+          </a> -->
+
+          {/* CARD 5: Group Adventure (MODIFIED) */}
+          <a href="/services/group-adventure#day-adventures" class="block bg-surface p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <img src={iconTeambuilding.src} alt="Group adventure icon" class="mx-auto h-16 w-16 mb-4 rounded-full"/>
+            <h3 class="text-2xl font-semibold mb-3 text-accent text-center">Group Adventure</h3>
+            <p class="text-foreground-light-bg mb-4 text-center">
+              For groups, clubs, and youth looking for a day of thrilling activities and teambuilding. 
+              <!-- Our programs blend obstacle courses, nature trails, and challenges that foster stronger bonds. -->
+            </p>
+            <span class="inline-flex items-center text-accent font-medium group mx-auto">
+              Learn More
+              <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </span>
+          </a>
+
+          {/* CARD 6: Biodiversity & Conservation Programs */}
+          <a href="/programs" class="block bg-surface p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <img src={iconConservation.src} alt="Conservation icon" class="mx-auto h-16 w-16 mb-4 rounded-full"/>
+            <h3 class="text-2xl font-semibold mb-3 text-accent text-center">Biodiversity Conservation Programs</h3>
+            <p class="text-foreground-light-bg mb-4 text-center">
+              Immerse in the Kikuyu Escarpment's vibrant ecosystem through hands-on conservation learning.
+            </p>
+            <span class="inline-flex items-center text-accent font-medium group mx-auto">
+              Learn More
+              <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+    {/* --- END OF SERVICES SECTION --- */}
+
+    <Hr /> {/* Separator below Services */}
+
+    {/* --- START OF UPCOMING EVENTS SECTION --- */}
+    <section class="py-12 sm:py-16 bg-surface"> {/* REMOVED max-w-app mx-auto px-4 and ADDED bg-surface text-foreground */}
+      <div class="max-w-app mx-auto px-4"> {/* ADDED div for content width */}
+        <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-center text-accent">
+          Upcoming Special Events
+        </h2>
+        <p class="text-lg text-center max-w-2xl mx-auto mb-12 text-foreground-light-bg">
+          Join us for unique experiences designed to connect you with nature, challenge your limits, and foster community spirit in Ngubi Forest.
+        </p>
+
+        {/* Dynamic Grid for Events */}
+        <div id="events-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-12 items-start justify-center">
+          {events.length === 0 ? (
+            <p class="col-span-full text-center text-text-muted">No upcoming events at the moment. Check back soon!</p>
+          ) : (
+            events.map((event, index) => (
+              <div 
+                class:list={[
+                  "relative rounded-lg shadow-lg overflow-hidden w-60 h-96 mx-auto bg-cover bg-center text-white", /* text-white remains for image overlay */
+                  {"hidden": index >= 3} /* Initially hide events beyond the first 3 */
+                ]}
+                style={`background-image: url('${event.data.eventImage}');`}
+                data-event-card /* Custom attribute for JS targeting */
+              >
+                {/* Opacity Fix: This overlay will work */}
+                <div class="absolute inset-0 event-card-text-overlay"></div> {/* REPLACED bg-black opacity-30 with custom class for fix */}
+                <div class="relative z-10 p-4 flex flex-col justify-between h-full">
+                  <div>
+                    <h3 class="text-xl font-bold mb-1">{event.data.title}</h3>
+                    <p class="text-sm mb-2">
+                      <span class="font-bold">{formatDate(event.data.eventDate)}</span>
+                      {event.data.eventTime && ` at ${event.data.eventTime}`}
+                      {event.data.location && ` | ${event.data.location}`}
+                    </p>
+                  </div>
+                  <p class="text-sm mb-4 flex-grow">{event.data.description || 'No description available.'}</p>
+                  <div class="mt-auto pt-4">
+                    {event.data.price && (
+                      <p class="text-sm font-semibold mb-2 text-white">{event.data.price}</p>
+                    )}
+                    <LinkButton
+                      href={event.data.registerLink || `/events/${event.slug}`}
+                      class="inline-block px-6 py-2 text-md bg-white text-accent rounded-full font-semibold whitespace-nowrap hover:bg-gray-200 hover:text-accent transition-colors duration-200"
+                      ariaLabel={`Register for ${event.data.title}`}
+                      title={`Register for ${event.data.title}`}
+                    >
+                      {event.data.registerLink ? 'Register Now' : 'View Details'}
+                    </LinkButton>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* Load More Button */}
+        {events.length > 3 && (
+          <div class="my-8 text-center">
+            <LinkButton id="load-more-events-btn"  class="text-foreground-light-bg"> {/* ADDED text-foreground-light-bg */}
+              Load More Events
+              <svg class="inline-block ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </LinkButton>
+          </div>
+        )}
+      </div> {/* Closing div for max-w-app px-4 */}
+    </section>
+    {/* --- END OF UPCOMING EVENTS SECTION --- */}
+
+    <Hr /> {/* Separator below Events */}
+
+    {/* --- START OF TESTIMONIALS SECTION Disabled before opening--- */}
+    <!-- <section class="py-12 sm:py-16 bg-surface"> {/* REMOVED max-w-app mx-auto px-4 and ADDED bg-surface text-foreground */}
+      <div class="max-w-app mx-auto px-4"> {/* ADDED div for content width */}
+        <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-center text-accent">
+          What Our Guests Say About Us
+        </h2>
+        
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Testimonial Card 1 */}
+          <div class="bg-surface p-6 rounded-lg shadow-lg flex flex-col justify-between">
+            <p class="text-foreground-light-bg italic mb-4">
+              "Ngubi Adventure Forest Camp offered the perfect escape! The high ropes course was thrilling, and the team-building activities really brought our group together. Highly recommended for a unique outdoor experience."
+            </p>
+            <p class="font-semibold text-right text-foreground-light-bg">- Jane Doe, Corporate Team Lead</p>
+          </div>
+
+          {/* Testimonial Card 2 */}
+          <div class="bg-surface p-6 rounded-lg shadow-lg flex flex-col justify-between">
+            <p class="text-foreground-light-bg italic mb-4">
+              "The Weekend Bootcamp was exactly what I needed to re-energize. The forest environment was incredibly refreshing, and the guidance was top-notch. I feel stronger and more connected to nature."
+            </p>
+            <p class="font-semibold text-right text-foreground-light-bg">- John Smith, Individual Participant</p>
+          </div>
+
+          {/* Testimonial Card 3 */}
+          <div class="bg-surface p-6 rounded-lg shadow-lg flex flex-col justify-between">
+            <p class="text-foreground-light-bg italic mb-4">
+              "Our family picnic at Ngubi was unforgettable. So peaceful, and the kids loved exploring the grounds. It's wonderful to have such a serene spot so accessible. We'll definitely be back!"
+            </p>
+            <p class="font-semibold text-right text-foreground-light-bg">- Sarah & Family, Local Visitor</p>
+          </div>
+        </div>
+
+
+      </div>
+    </section> -->
+    {/* --- END OF TESTIMONIALS SECTION: Disabled before opening --- */}
+
+    <Hr /> {/* Separator below Testimonials */}
+
+    <!-- {/* --- START OF PARTNERS/ACCREDITATION SECTION --- */}
+    <section class="py-12 sm:py-16 bg-surface text-foreground"> {/* REMOVED max-w-app mx-auto px-4 and ADDED bg-surface text-foreground */}
+      <div class="max-w-app mx-auto px-4"> {/* ADDED div for content width */}
+        <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-center text-accent">
+          Our Valued Partners
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center justify-center">
+          {/* Partner Logos */}
+          <div class="bg-surface p-4 rounded-lg shadow-md flex items-center justify-center h-24 sm:h-32">
+            <img src="/images/partner-museums.png" alt="Partner Museums Logo" class="max-h-full max-w-full object-contain hover:scale-105 transition-all duration-300">
+          </div>
+
+          <div class="bg-surface p-4 rounded-lg shadow-md flex items-center justify-center h-24 sm:h-32">
+            <img src="/images/partner-kfs.png" alt="Partner KFS Logo" class="max-h-full max-w-full object-contain hover:scale-105 transition-all duration-300">
+          </div>
+
+          <div class="bg-surface p-4 rounded-lg shadow-md flex items-center justify-center h-24 sm:h-32">
+            <img src="/images/logo-placeholder.png" alt="Partner Logo 1" class="max-h-full max-w-full object-contain hover:scale-105 transition-all duration-300">
+          </div> -->
+<!-- 
+          {/* ... other partner logos ... */}
+        </div>
+      </div>
+    </section>
+    {/* --- END OF PARTNERS/ACCREDITATION SECTION --- */}  -->
+
+    {/* --- START OF PARTNERS/ACCREDITATION SECTION --- */}
+    <section class="py-12 sm:py-16 bg-surface text-foreground">
+      <div class="max-w-app mx-auto px-4">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-center text-accent">
+          Our Valued Partners
+        </h2>
+        {/* NEW: Flexbox container for centering the grid */}
+        <div class="flex justify-center">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center">
+                {/* Partner Logos */}
+                <div class="bg-surface p-4 rounded-lg shadow-md flex items-center justify-center h-24 sm:h-32">
+                    <img src="/images/partner-museums.png" alt="Partner Museums Logo" class="max-h-full max-w-full object-contain hover:scale-105 transition-all duration-300">
+                </div>
+
+                <div class="bg-surface p-4 rounded-lg shadow-md flex items-center justify-center h-24 sm:h-32">
+                    <img src="/images/partner-kfs.png" alt="Partner KFS Logo" class="max-h-full max-w-full object-contain hover:scale-105 transition-all duration-300">
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+    {/* --- END OF PARTNERS/ACCREDITATION SECTION --- */}
+
   </main>
-  <Footer />
+
+  <Footer class="bg-background" /> {/* ADD bg-background to Footer */}
+
+{/* JavaScript for Load More functionality */}
+<script client:load>
+    function initializeLoadMore() {
+        const loadMoreBtn = document.getElementById('load-more-events-btn');
+        const eventCards = document.querySelectorAll('[data-event-card]');
+        const cardsPerLoad = 3; // Number of cards to show/load at once
+
+        // Reset currentVisibleCount on every initialization
+        let currentVisibleCount = cardsPerLoad;
+
+        // This function updates the visibility of cards based on currentVisibleCount
+        function updateVisibility() {
+            eventCards.forEach((card, index) => {
+                if (index < currentVisibleCount) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden'); // Keep hidden if beyond current count
+                }
+            });
+
+            // Toggle visibility of the "Load More" button
+            if (currentVisibleCount >= eventCards.length && loadMoreBtn) {
+                loadMoreBtn.classList.add('hidden'); // Hide if all cards are visible
+            } else if (loadMoreBtn) {
+                loadMoreBtn.classList.remove('hidden'); // Show if not all cards are visible
+            }
+        }
+
+        // Attach click listener ONLY ONCE if the button exists and it hasn't been attached before
+        if (loadMoreBtn && !loadMoreBtn.dataset.listenerAttached) {
+            loadMoreBtn.addEventListener('click', () => {
+                currentVisibleCount += cardsPerLoad;
+                updateVisibility();
+            });
+            loadMoreBtn.dataset.listenerAttached = 'true'; // Mark that the listener has been attached
+        }
+
+        // Perform the initial visibility update for this component's lifecycle
+        updateVisibility();
+    }
+
+    // --- Execute on initial page load ---
+    // This runs when the component is first loaded onto the page (including initial visits and hard refreshes).
+    initializeLoadMore();
+
+    // --- Re-execute on Astro page load if using View Transitions ---
+    // This ensures the component's state is reset every time Astro performs a page swap
+    // (e.g., navigating from Contact back to Home without a full browser refresh).
+    document.addEventListener('astro:after-swap', initializeLoadMore);
+</script>
+
 </Layout>
 
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset?.layout;
-    if (indexLayout) {
-      sessionStorage.setItem("backUrl", "/");
-    }
-  });
-</script>

@@ -1,6 +1,9 @@
 ---
 import Hr from "./Hr.astro";
 import Socials from "./Socials.astro";
+import { SITE } from "@/config"; // <--- ADD THIS LINE
+import NewsletterForm from "./NewsletterForm.astro"; // Import the Newsletter form
+
 
 const currentYear = new Date().getFullYear();
 
@@ -11,16 +14,59 @@ export interface Props {
 const { noMarginTop = false } = Astro.props;
 ---
 
-<footer class:list={["w-full", { "mt-auto": !noMarginTop }]}>
+<footer class="bg-dark-header-footer-bg" class:list={["w-full", { "mt-auto": !noMarginTop }]}> {/* Changed bg-background to bg-dark-header-footer-bg */}
   <Hr noPadding />
-  <div
-    class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"
-  >
-    <Socials centered />
-    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <span>Copyright &#169; {currentYear}</span>
-      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-      <span>All rights reserved.</span>
+  <div class="max-w-app mx-auto px-4 py-8 sm:py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+    {/* Column 1: Logo / Basic Info */}
+    <div class="flex flex-col items-center md:items-start text-center md:text-left text-light-text-on-dark-bg"> {/* ADDED text-light-text-on-dark-bg */}
+      <a href="/" class="block mb-4">
+        <img src="/images/ngubi-logo.png" alt={SITE.title} width="120" height="auto" class="h-auto max-h-16 w-auto object-contain mx-auto md:mx-0"/>
+      </a>
+      <p class="text-sm mt-2">
+        Enriching nature experiences, fostering teamwork, and promoting conservation in the Kikuyu escarpment forest.
+      </p>
+      <p class="text-xs mt-2">Your adventure begins here.</p>
     </div>
+
+    {/* Column 2: Navigation Links */}
+    <div class="text-center md:text-left text-light-text-on-dark-bg"> {/* ADDED text-light-text-on-dark-bg */}
+      <h3 class="text-lg font-semibold mb-4 text-accent">Quick Links</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/services" class="hover:text-accent transition-colors">Our Services</a></li>
+        <li><a href="/events" class="hover:text-accent transition-colors">Upcoming Events</a></li>
+        <li><a href="/gallery" class="hover:text-accent transition-colors">Gallery</a></li>
+        <li><a href="/programs" class="hover:text-accent transition-colors">Conservation Programs</a></li>
+        <li><a href="/contact" class="hover:text-accent transition-colors">Contact Us</a></li>
+        <!-- <li><a href="/posts" class="hover:text-accent transition-colors">Our Blog</a></li> -->
+        <li><a href="/about" class="hover:text-accent transition-colors">About Us</a></li>
+      </ul>
+    </div>
+
+    {/* Column 3: Address, Contacts, Working Hours */}
+    <div class="text-center md:text-left text-light-text-on-dark-bg"> {/* ADDED text-light-text-on-dark-bg */}
+      <h3 class="text-lg font-semibold mb-4 text-accent">Get In Touch</h3>
+      <div class="space-y-2">
+        <p class="text-sm mb-4">Ngubi Forest<br/>Limuru-Maai Mahiu Road<br/>Limuru, Kiambu County, Kenya</p>
+        <p class="text-sm mb-4">Open: Mon-Sun, 8 AM - 5 PM</p>
+        <p class="text-sm">Email: <a href="mailto:info@ngubiadventure.com" class="hover:text-accent transition-colors">info@ngubiadventure.com</a></p>
+        <p class="text-sm">Phone: <a href="tel:+2547XX000000" class="hover:text-accent transition-colors">+254 7XX XXX XXX</a></p>
+      </div>
+    </div>
+  </div>
+
+  {/* Newsletter Form */}
+  <div class="mb-2">
+      <NewsletterForm />
+  </div>
+
+  {/* Second Row: Copyright and Socials */}
+  <div class="max-w-app mx-auto px-4 py-4 sm:py-6 flex flex-col sm:flex-row justify-between items-center border-t border-border mt-8 text-light-text-on-dark-bg"> {/* ADDED text-light-text-on-dark-bg */}
+    <div class="text-xs mb-2 sm:mb-0 text-center sm:text-left"> {/* Removed text-text-muted */}
+      <span>Copyright &copy; {currentYear}</span>
+      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
+      <span>{SITE.title}. All rights reserved.</span>
+      <span class="block mt-0.5"> Built with <a href="https://github.com/satnaing/astro-paper" target="_blank" class="font-semibold hover:underline">AstroPaper</a></span>
+    </div>
+    <Socials centered={false} />
   </div>
 </footer>

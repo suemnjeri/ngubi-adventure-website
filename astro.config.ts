@@ -3,6 +3,8 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
+// import remarkCollapse from "@remark-plugins/remark-collapse"; // Note: this might be different, check your current import
+
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
@@ -11,6 +13,9 @@ import {
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
 
+import mdx from "@astrojs/mdx"; // ADD THIS LINE: Import MDX integration
+
+
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
@@ -18,6 +23,7 @@ export default defineConfig({
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),
     }),
+    mdx(), // ADD THIS LINE: Enable MDX integration (handles Markdown too)
   ],
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],

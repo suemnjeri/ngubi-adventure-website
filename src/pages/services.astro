@@ -1,0 +1,414 @@
+---
+import Layout from '../layouts/Layout.astro';
+// REMOVED: import Main from '../components/Main.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LinkButton from '../components/LinkButton.astro';
+
+// Import the service title image
+import ServicesTitleImage from '/public/images/title-services-page3.webp';
+
+// NEW: Import the three service group icons
+import iconForestAdventures from '/public/images/icon-forest-adventures.png';
+import iconGroupAdventure from '/public/images/icon-group-adventure.png';
+import iconConservationPrograms from '/public/images/icon-conservation-programs.png';
+---
+<Layout title="Our Services - Ngubi Adventure Forest Camp">
+  <Header />
+  <main class="pt-21 bg-surface text-foreground"> {/* Changed <Main> to <main> and added classes directly */}
+
+    {/* Playful Image Title */}
+    <h1 class="sr-only">Our Services</h1> {/* Hidden H1 for SEO/Accessibility */}
+    <div class="text-center mb-4 mx-auto max-w-4xl px-4"> {/* Container for the image title */}
+        <img
+            src={ServicesTitleImage.src}
+            alt="Our Services - Choose Your Adventure!"
+            width={ServicesTitleImage.width}
+            height={ServicesTitleImage.height}
+            class="w-full h-auto object-contain"
+        />
+    </div>
+    {/* END Playful Image Title */}
+
+    {/* Introduction */}
+    <p class="text-lg text-center max-w-2xl mx-auto mb-4 text-foreground">
+      At Ngubi Adventure Forest Camp, we offer a range of unique experiences designed to connect you with nature, foster teamwork, and deepen your understanding of our vital forest ecosystem. Choose the adventure that's perfect for you or your group!
+      <!-- Discover the perfect experience for you or your group. We offer a range of services designed for individual adventures, team growth, and deep conservation learning. -->
+    </p>
+
+
+
+    {/* Service Comparison Grid (Desktop View) */}
+    <div class="max-w-5xl mx-auto px-4 py-8 hidden md:block"> {/* ADDED hidden md:block */}
+      {/* Table Header Row (Features Column + Service Columns) */}
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4 font-bold text-lg text-center md:text-left text-accent border-b-2 border-accent pb-2">
+        <div class="hidden md:block">Features</div>
+        <!-- <div>Hiking, Biking and Picnic Forest Adventures</div>
+        <div>Camping, Team Building and Group Adventure</div>
+        <div>Biodiversity & Conservation Programs</div> -->
+        <div class="flex flex-col items-center">
+              <a href="/services/forest-adventures" aria-label="Explore Forest Adventures">
+                  <img src={iconForestAdventures.src} alt="Forest Adventures Icon" class="h-12 w-12 rounded-full mb-2"/>
+              </a>
+              <span class="text-lg font-semibold text-accent">Forest Adventures</span>
+          </div>
+          <div class="flex flex-col items-center">
+              <a href="/services/group-adventure" aria-label="Explore Group Adventure">
+                  <img src={iconGroupAdventure.src} alt="Group Adventure Icon" class="h-12 w-12 rounded-full mb-2"/>
+              </a>
+              <span class="text-lg font-semibold text-accent">Group Adventure</span>
+          </div>
+          <div class="flex flex-col items-center">
+              <a href="/programs" aria-label="Explore Conservation Programs">
+                  <img src={iconConservationPrograms.src} alt="Conservation Programs Icon" class="h-12 w-12 rounded-full mb-2"/>
+              </a>
+              <span class="text-lg font-semibold text-accent">Programs</span>
+          </div>
+
+
+
+      </div>
+
+      {/* Feature Row: Customer/Client */}
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-4 border-b border-border text-foreground">
+        <div class="font-semibold text-text-muted text-center md:text-left mb-2 md:mb-0">Customer / Client</div>
+        <div class="text-center md:text-left">Individuals, Couples, Families, Travelers</div>
+        <div class="text-center md:text-left">Corporate Groups, Church Members, Clubs, Youth</div>
+        <div class="text-center md:text-left">Schools, University Students, Clubs, Corporate</div>
+      </div>
+
+      {/* Feature Row: Site Access */}
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-4 border-b border-border text-foreground">
+        <div class="font-semibold text-text-muted text-center md:text-left mb-2 md:mb-0">Site Access</div>
+        <div class="text-center md:text-left">Forest Trails, Picnic Grounds, Nature Stroll Area</div>
+        <div class="text-center md:text-left">Designated Activity Zones, Forest Nature Trails</div>
+        <div class="text-center md:text-left">Education Zones, Forest Designated Trails, Conservation Areas</div>
+      </div>
+
+      {/* Feature Row: Core Focus */}
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-4 border-b border-border text-foreground">
+        <div class="font-semibold text-text-muted text-center md:text-left mb-2 md:mb-0">Main Focus</div>
+        <div class="text-center md:text-left">Hiking, Mountain Biking, Picnics, Relaxation, Casual Enjoyment, Convenience</div>
+        <div class="text-center md:text-left">Camping, Team Cohesion, Problem Solving, Physical Challenge, Day Adventures</div>
+        <div class="text-center md:text-left">Environmental Education, Scientific Exploration, Practical Stewardship</div>
+      </div>
+
+      {/* Feature Row: Included Meals */}
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-4 border-b border-border text-foreground">
+        <div class="font-semibold text-text-muted text-center md:text-left mb-2 md:mb-0">Meal Options</div>
+        <div class="text-center md:text-left">Bring your own Picnic or Pre-book Lunch</div>
+        <div class="text-center md:text-left">Catered meals included</div>
+        <div class="text-center md:text-left">Catered lunch included</div>
+      </div>
+
+      {/* Feature Row: Activities */}
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-4 border-b border-border text-foreground">
+        <div class="font-semibold text-text-muted text-center md:text-left mb-2 md:mb-0">Activities</div>
+        <div class="text-center md:text-left">Hiking, Mountain Biking, Picnicking, Self-Guided Strolls</div>
+        <div class="text-center md:text-left">Camping, Obstacle Course, Nature Trails, Tree Planting, Conservation Activities</div>
+        <div class="text-center md:text-left">Biodiversity Surveys, Tree Planting, Guided Walks, Trail Quest</div>
+      </div>
+
+      {/* Feature Row: Optional Add-ons */}
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-4 border-b border-border text-foreground">
+        <div class="font-semibold text-text-muted text-center md:text-left mb-2 md:mb-0">Optional Add-ons</div>
+        <div class="text-center md:text-left">Guided Nature Walks, Axe Throwing, Trail Quest</div>
+        <div class="text-center md:text-left">Custom Team Challenges, Extended Sessions</div>
+        <div class="text-center md:text-left">Customized Research Programs, Specialized Workshops</div>
+      </div>
+
+      {/* Pricing*/}
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-4 border-b border-border text-foreground">
+        <div class="font-semibold text-text-muted text-center md:text-left mb-2 md:mb-0">Pricing</div>
+        <div class="text-center md:text-left">From KES 500 pp</div>
+        <div class="text-center md:text-left">From KES 2,500 pp</div>
+        <div class="text-center md:text-left">From KES 1,500 pp</div>
+      </div>
+      
+
+      {/* Buttons at the bottom of each service column */}
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pt-4 mt-8 md:mt-4">
+        <div class="hidden md:block"></div>
+        <div>
+            <a
+                href="/services/forest-adventures"
+                class="inline-flex items-center text-accent font-medium hover:underline group mx-auto"
+                aria-label="Learn more about Forest Adventures"
+            >
+                Learn More <span class="ml-1 group-hover:translate-x-1 transition-transform duration-200">>></span>
+            </a>
+        </div>
+        <div>
+            <a
+                href="/services/group-teambuilding"
+                class="inline-flex items-center text-accent font-medium hover:underline group mx-auto"
+                aria-label="Learn more about Group Adventure & TeamBuilding"
+            >
+                Learn More <span class="ml-1 group-hover:translate-x-1 transition-transform duration-200">>></span>
+            </a>
+        </div>
+        <div>
+            <a
+                href="/programs"
+                class="inline-flex items-center text-accent font-medium hover:underline group mx-auto"
+                aria-label="Learn more about Biodiversity & Conservation Programs"
+            >
+                Learn More <span class="ml-1 group-hover:translate-x-1 transition-transform duration-200">>></span>
+            </a>
+        </div>
+      </div>
+
+
+      
+    </div> {/* End of Desktop View div */}
+
+    {/* NEW: Mobile View - Stacked Service Cards */}
+    <div class="max-w-app mx-auto px-4 py-8 md:hidden"> {/* ADDED md:hidden to hide on desktop */}
+      <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center text-accent">
+        Our Adventures & Experiences
+      </h2>
+      <!-- <div class="grid grid-cols-1 gap-8"> {/* Single column for mobile cards */} -->
+
+      {/* Mobile Card 1: Forest Stopover & Picnic - REVISED */}
+      <!-- <a href="/services/forest-adventures" class="block bg-surface p-6 shadow-lg text-foreground"> -->
+        <!-- <h3 class="text-2xl font-semibold mb-3 text-accent text-center">Hiking, Biking and Picnic Forest Adventures</h3> {/* ADDED text-center */} -->
+
+        <div class="text-center">
+            <a href="/services/forest-adventures" aria-label="Explore Forest Adventures">
+                <img src={iconForestAdventures.src} alt="Forest Adventures Icon" class="h-16 w-16 rounded-full mx-auto mb-2"/>
+            </a>
+            <h3 class="text-2xl font-semibold mb-2 text-accent text-center">Hiking, Biking and Picnic Forest Adventures</h3> {/* ADDED text-center */}
+        </div>
+
+        <div class="text-center mb-10"> {/* Centering wrapper for feature blocks */}
+          {/* Feature Block: Customer */}
+          <div class="mb-2"> {/* space below block */}
+            <p class="font-bold text-text-muted">Customer / Client:</p> {/* Feature Name - Bold & Centered */}
+            <p class="text-sm text-text-muted">Individuals, Couples, Families, Travelers</p> {/* Offerings - Not bold, not bulleted */}
+          </div>
+
+          {/* Feature Block: Site Access */}
+          <div class="mb-2">
+            <p class="font-bold text-text-muted">Site Access:</p>
+            <p class="text-sm text-text-muted">Forest Trails, Picnic Grounds, Nature Stroll Area</p>
+          </div>
+
+          {/* Feature Block: Core Focus */}
+          <div class="mb-2">
+            <p class="font-bold text-text-muted">Main Focus:</p>
+            <p class="text-sm text-text-muted">Hiking, Mountain Biking, Picnics, Relaxation, Casual Enjoyment, Convenience</p>
+          </div>
+
+          {/* Feature Block: Included Meals */}
+          <div class="mb-2">
+            <p class="font-bold text-text-muted">Meal Options:</p>
+            <p class="text-sm text-text-muted">Bring your own Picnic or Pre-book Lunch</p>
+          </div>
+
+          {/* Feature Block: Activities */}
+          <div class="mb-2">
+            <p class="font-bold text-text-muted">Activities:</p>
+            <p class="text-sm text-text-muted">Hiking, Mountain Biking, Picnicking, Self-Guided Strolls</p>
+          </div>
+
+          {/* Feature Block: Optional Add-ons */}
+          <div class="mb-2"> {/* mb-4 for more space before button */}
+            <p class="font-bold text-text-muted">Optional Add-ons:</p>
+            <p class="text-sm text-text-muted">Guided Walks, Axe Throwing, Trail Quest</p>
+          </div>
+
+          {/* Pricing*/}
+          <div class="mb-2"> {/* mb-4 for more space before button */}
+            <p class="font-bold text-text-muted">Pricing:</p>
+            <p class="text-sm text-text-muted">From KES 500 pp</p>
+          </div>
+
+          {/* Learn More Button*/}
+          <div class="text-center mb-4">
+              <a
+                  href="/services/forest-adventures"
+                  class="inline-flex items-center text-accent font-medium hover:underline group mx-auto"
+                  aria-label="Learn more about forest adventure"
+              >
+                  Learn More <span class="ml-1 group-hover:translate-x-1 transition-transform duration-200">>></span>
+              </a>
+          </div>
+
+        </div>
+
+        <!-- <hr class = "mb-4"> -->
+
+        <!-- <div class="text-center mt-4"> {/* Text-center for the button */}
+          <span class="inline-flex items-center text-accent font-medium group">
+            Learn More <span class="ml-1 group-hover:translate-x-1 transition-transform duration-200">>></span>
+          </span>
+        </div> -->
+
+
+
+
+      <!-- </a> -->
+<!-- 
+       
+        {/* Mobile Card 2: Group Adventure & TeamBuilding - REVISED */}
+        <!-- <a href="/services/group-adventure" class="block bg-surface p-6 rounded-lg shadow-lg border border-border text-foreground"> -->
+          <!-- <h3 class="text-2xl font-semibold mb-3 text-accent text-center">Camping, Team Building and Group Adventure</h3> {/* ADDED text-center */} -->
+          <div class="text-center">
+              <a href="/services/group-adventure" aria-label="Explore Group Adventure">
+                  <img src={iconGroupAdventure.src} alt="Group Adventure Icon" class="h-16 w-16 rounded-full mx-auto mb-2"/>
+              </a>
+              <h3 class="text-2xl font-semibold mb-2 text-accent">Group Adventure</h3>
+          </div>
+          
+          <div class="text-center mb-10"> {/* Centering wrapper for feature blocks */}
+
+            {/* Feature Block: Customer */}
+            <div class="mb-2"> {/* space below block */}
+              <p class="font-bold text-text-muted">Customer / Client:</p> {/* Feature Name - Bold & Centered */}
+              <p class="text-sm text-text-muted">Corporate Groups, Church Members, Clubs, Youth</p> {/* Offerings - Not bold, not bulleted */}
+            </div>
+
+            {/* Feature Block: Site Access */}
+            <div class="mb-2">
+              <p class="font-bold text-text-muted">Site Access:</p>
+              <p class="text-sm text-text-muted">Designated Activity Zones, Camping Site, Forest Nature Trails</p>
+            </div>
+
+            {/* Feature Block: Core Focus */}
+            <div class="mb-2">
+              <p class="font-bold text-text-muted">Main Focus:</p>
+              <p class="text-sm text-text-muted">Camping, Team Cohesion, Problem Solving, Physical Challenge, Day Adventures</p>
+            </div>
+
+            {/* Feature Block: Included Meals */}
+            <div class="mb-2">
+              <p class="font-bold text-text-muted">Meal Options:</p>
+              <p class="text-sm text-text-muted">Catered meals included</p>
+            </div>
+
+            {/* Feature Block: Activities */}
+            <div class="mb-2">
+              <p class="font-bold text-text-muted">Activities:</p>
+              <p class="text-sm text-text-muted">Camping, Obstacle Course, Nature Trails, Tree Planting, Conservation Activities</p>
+            </div>
+
+            {/* Feature Block: Optional Add-ons */}
+            <div class="mb-2"> {/* mb-4 for more space before button */}
+              <p class="font-bold text-text-muted">Optional Add-ons:</p>
+              <p class="text-sm text-text-muted">Custom Team Challenges, Extended Sessions</p>
+            </div>
+
+            {/* Pricing*/}
+            <div class="mb-2"> {/* mb-4 for more space before button */}
+              <p class="font-bold text-text-muted">Pricing:</p>
+              <p class="text-sm text-text-muted">From KES 2,500 pp</p>
+            </div>
+
+            {/* Learn more button*/}
+            <div class="text-center mb-2">
+                <a
+                    href="/services/group-adventure"
+                    class="inline-flex items-center text-accent font-medium hover:underline group mx-auto"
+                    aria-label="Learn more about Group Adventures"
+                >
+                    Learn More <span class="ml-1 group-hover:translate-x-1 transition-transform duration-200">>></span>
+                </a>
+            </div>
+
+          </div>
+
+        <!-- <hr class = "mb-4"> -->
+
+          
+          
+        <!-- </a> -->
+
+
+        {/* Mobile Card: 3 Biodiversity & Conservation Programs - REVISED */}
+        <!-- <a href="/programs" class="block bg-surface p-6 text-foreground"> -->
+          <!-- <h3 class="text-2xl font-semibold mb-3 text-accent text-center">Biodiversity & Conservation Programs</h3> {/* ADDED text-center */} -->
+
+          <div class="text-center">
+              <a href="/programs" aria-label="Explore Conservation Programs">
+                  <img src={iconGroupAdventure.src} alt="Conservation Programs Icon" class="h-16 w-16 rounded-full mx-auto mb-2"/>
+              </a>
+              <h3 class="text-2xl font-semibold mb-2 text-accent">Biodiversity & Conservation Programs</h3>
+          </div>
+
+          <div class="text-center mb-10"> {/* Centering wrapper for feature blocks */}
+
+            {/* Feature Block: Customer */}
+            <div class="mb-2"> {/* space below block */}
+              <p class="font-bold text-text-muted">Customer / Client:</p> {/* Feature Name - Bold & Centered */}
+              <p class="text-sm text-text-muted">Schools, University Students, Clubs, Corporate</p> {/* Offerings - Not bold, not bulleted */}
+            </div>
+
+            {/* Feature Block: Site Access */}
+            <div class="mb-2">
+              <p class="font-bold text-text-muted">Site Access:</p>
+              <p class="text-sm text-text-muted">Education Zones, Designated Trails, Conservation Areas
+            </p>
+            </div>
+
+            {/* Feature Block: Core Focus */}
+            <div class="mb-2">
+              <p class="font-bold text-text-muted">Main Focus:</p>
+              <p class="text-sm text-text-muted">Environmental Education, Scientific Exploration, Practical Stewardship</p>
+            </div>
+
+            {/* Feature Block: Included Meals */}
+            <div class="mb-2">
+              <p class="font-bold text-text-muted">Meal Options:</p>
+              <p class="text-sm text-text-muted">Catered lunch included</p>
+            </div>
+
+            {/* Feature Block: Activities */}
+            <div class="mb-2">
+              <p class="font-bold text-text-muted">Activities:</p>
+              <p class="text-sm text-text-muted">Biodiversity Surveys, Tree Planting, Guided Walks, Trail Quest</p>
+            </div>
+
+            {/* Feature Block: Optional Add-ons */}
+            <div class="mb-2"> {/* mb-4 for more space before button */}
+              <p class="font-bold text-text-muted">Optional Add-ons:</p>
+              <p class="text-sm text-text-muted">Customized Research Programs, Specialized Workshops</p>
+            </div>
+
+            {/* Pricing*/}
+            <div class="mb-2"> {/* mb-4 for more space before button */}
+              <p class="font-bold text-text-muted">Pricing:</p>
+              <p class="text-sm text-text-muted">From KES 1,500 pp</p>
+            </div>
+
+            {/* Learn More button*/}
+            <div class="text-center mt-1 mb-2">
+              <a
+                  href="/programs"
+                  class="inline-flex items-center text-accent font-medium hover:underline group mx-auto"
+                  aria-label="Learn more about Biodiversity & Conservation Programs"
+              >
+                  Learn More <span class="ml-1 group-hover:translate-x-1 transition-transform duration-200">>></span>
+              </a>
+            </div>
+
+          </div>
+
+      <!-- </div> {/* End of Mobile View div */} -->
+      </div>
+
+
+    {/* Call to Action Buttons */}
+    <div class="text-center mt-12 mb-8">
+      <LinkButton
+        href="/booking"
+        class="inline-block px-8 py-4 text-lg bg-accent text-white rounded-full font-semibold whitespace-nowrap hover:bg-accent-dark hover:text-white transition-colors duration-200 shadow-lg"
+        ariaLabel="Inquire About Services"
+        title="Inquire About Services"
+      >
+        Inquire About Services
+      </LinkButton>
+    </div>
+
+  </main>
+  <Footer />
+</Layout>

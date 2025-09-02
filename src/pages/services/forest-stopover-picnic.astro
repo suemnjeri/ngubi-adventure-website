@@ -1,0 +1,112 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Main from '../../layouts/Main.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import LinkButton from '../../components/LinkButton.astro';
+
+// NEW: Import the title image
+import PicnicServiceTitleImage from '/public/images/title-picnic-service.webp';
+
+// Import the image directly
+import ForestPicnicBanner from '/public/images/hero-forest-bg.jpg'; // Adjust path if your public folder is structured differently
+
+---
+<Layout title="Forest Stopover & Picnic - Ngubi Adventure Forest Camp">
+  <Header />
+  
+
+
+  <Main>
+    {/* Playful Image Title */}
+    <h1 class="sr-only">Forest Stopover & Picnic</h1> {/* Hidden H1 for SEO/Accessibility */}
+    <div class="text-center mb-8 mx-auto max-w-4xl px-4"> {/* Container for the image title */}
+        <img
+            src={PicnicServiceTitleImage.src}
+            alt="Forest Stopover & Picnic"
+            width={PicnicServiceTitleImage.width}
+            height={PicnicServiceTitleImage.height}
+            class="w-full h-auto object-contain"
+        />
+    </div>
+    {/* END Playful Image Title */}
+
+    {/* forest-stopover-picnic Intro Section - More Inviting */}
+    <section class="mb-5">
+      <p class="text-lg text-center text-text-muted max-w-2xl mx-auto">
+        Escape the everyday hustle and find your perfect moment of tranquility amidst the natural beauty of Ngubi Forest. Whether it's a peaceful personal retreat, a joyous family gathering, or a refreshing pause during your journey, our camp offers an inviting space to reconnect with nature and yourself.
+      </p>
+      <blockquote class="text-xl italic font-light text-center text-foreground mt-8 px-4 border-l-4 border-accent pl-4 max-w-xl mx-auto">
+        "The clearest way into the Universe is through a forest wilderness."
+        <cite class="block text-sm not-italic mt-2">- John Muir</cite>
+      </blockquote>
+    </section>
+
+    {/* Zigzag Section 1: Image Left, Text Right */}
+    <section class="max-w-app mx-auto px-4 py-8 sm:py-4 flex flex-col md:flex-row items-center md:space-x-8 mb-1">
+      <div class="md:w-1/2 mb-6 md:mb-0 relative rounded-lg overflow-hidden shadow-lg">
+        <img src="/images/picnic-card-bg1.webp" alt="Family enjoying picnic in forest" class="w-full h-auto object-cover rounded-lg">
+        <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div> {/* Subtle overlay for consistency */}
+      </div>
+      <div class="md:w-1/2 text-text-muted">
+        <h2 class="text-2xl font-bold mb-1 text-accent">Your Serene Forest Access</h2>
+        <p class="mb-3">
+          Discover the joy of spending time in nature. For a basic conservation fee, you gain access to our meticulously maintained picnic grounds and sprawling natural areas. Take a leisurely stroll, find a quiet spot to read, meditate, or simply soak in the peaceful ambiance of the Kikuyu Escarpment Forest. It’s your tranquil haven just moments from the main route.
+        </p>
+        <p>
+          **Conservation Fee Access:** Enjoy our picnic grounds and a nature stroll within our serene forest site.
+        </p>
+      </div>
+    </section>
+
+    {/* Zigzag Section 2: Text Left, Image Right */}
+    <section class="max-w-app mx-auto px-4 py-8 sm:py-4 flex flex-col md:flex-row-reverse items-center md:space-x-reverse md:space-x-8 mb-1">
+      <div class="md:w-1/2 mb-1 md:mb-0 relative rounded-lg overflow-hidden shadow-lg">
+        <img src="/images/picnic-card-bg2.webp" alt="People enjoying activities"  class="w-full h-auto object-cover rounded-lg">
+        <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
+      </div>
+      <div class="md:w-1/2 text-text-muted">
+        <h2 class="text-2xl font-bold mb-1 text-accent">Enrich Your Day with More Adventure</h2>
+        <p class="mb-4">
+          Ready to explore further? Enhance your stopover with exciting optional activities, available at an additional cost. Dive deeper into the forest with our expert guides, test your aim with axe throwing, or embark on the thrilling Ngubi Trail Quest Challenge – a unique team-based scavenger hunt through the wilderness.
+        </p>
+        <ul class="list-disc list-inside text-sm mt-4 space-y-1">
+            <li><strong>Guided Nature Walks</strong></li>
+            <li><strong>Axe Throwing</strong></li>
+            <li><strong>Ngubi Trail Quest Challenge</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    
+
+    {/* Call to Action & Booking Section */}
+    <section class="max-w-app mx-auto px-4 py-8 sm:py-4 text-center">
+      <h2 class="text-3xl font-bold mb-6 text-accent">Ready for Your Forest Escape?</h2>
+      <p class="text-lg text-text-muted mb-4 max-w-2xl mx-auto">
+        Whether you're planning a serene solo visit, a family outing, or a fun stop on your journey, we're here to make your experience unforgettable.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <LinkButton
+          href="/booking"
+          class="inline-block px-8 py-4 text-lg bg-accent text-white rounded-full font-semibold whitespace-nowrap hover:bg-accent-dark hover:text-white transition-colors duration-200 shadow-lg"
+          ariaLabel="Book Your Stopover Now"
+          title="Book Your Stopover Now"
+        >
+          Book Your Stopover Now
+        </LinkButton>
+        <LinkButton
+          href="/contact"
+          class="inline-block px-8 py-4 text-lg bg-white text-accent rounded-full font-semibold whitespace-nowrap hover:bg-gray-200 hover:text-accent transition-colors duration-200 shadow-lg"
+          ariaLabel="Contact Us For More Info"
+          title="Contact Us For More Info"
+        >
+          Contact Us For More Info
+        </LinkButton>
+      </div>
+    </section>
+  </Main>
+
+
+  <Footer />
+</Layout>

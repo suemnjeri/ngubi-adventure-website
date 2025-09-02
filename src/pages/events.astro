@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Main from '../layouts/Main.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LinkButton from '../components/LinkButton.astro'; // Assuming LinkButton is needed
+import { getCollection } from 'astro:content'; // Import getCollection
+
+// Import the title image
+import EventsTitleImage from '/public/images/title-events-page.webp'; // NEW: Import events title image
+
+
+// const events = (await getCollection('events')).sort(
+//   (a, b) => a.data.eventDate.valueOf() - b.data.eventDate.valueOf() // Sort by date, ascending
+// );
+
+const events = (await getCollection('events'))
+  .filter((event) => !event.data.draft)
+  .sort((a, b) => a.data.eventDate.valueOf() - b.data.eventDate.valueOf());
+
+// Helper function to format date
+function formatDate(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+}
+---
+
+<Layout title="Upcoming Events - Ngubi Adventure Forest Camp">
+  <Header />
+  <Main>
+    {/* Playful Image Title */}
+    <h1 class="sr-only">Upcoming Special Events</h1> {/* Hidden H1 for SEO/Accessibility */}
+    <div class="text-center mb-8 mx-auto max-w-4xl px-4"> {/* Container for the image title */}
+        <img
+            src={EventsTitleImage.src}
+            alt="Upcoming Special Events"
+            width={EventsTitleImage.width}
+            height={EventsTitleImage.height}
+            class="w-full h-auto object-contain"
+        />
+    </div>
+    {/* END Playful Image Title */}
+
+    <p class="text-lg text-center max-w-2xl mx-auto mb-12 text-foreground">
+      Join us for unique experiences designed to connect you with nature, challenge your limits, and foster community spirit in Ngubi Forest.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {events.length === 0 ? (
+        <p class="col-span-full text-center text-text-muted">No upcoming events at the moment. Check back soon!</p>
+      ) : (
+        
+      
+      events.map(event => (
+
+          <div class="bg-surface p-6 rounded-lg shadow-lg flex flex-col justify-between h-full">
+            <h2 class="text-2xl font-semibold mb-2 text-accent">{event.data.title}</h2>
+            <p class="text-text-muted text-sm mb-2">
+              <span class="font-bold">{formatDate(event.data.eventDate)}</span>
+              {event.data.eventTime && ` at ${event.data.eventTime}`}
+              {event.data.location && ` | ${event.data.location}`}
+            </p>
+            <p class="text-text-muted mb-4 flex-grow">{event.data.description || 'No description available.'}</p>
+            <div class="mt-auto pt-4"> {/* Push button to bottom */}
+                {event.data.price && (
+                    <p class="text-text-muted text-sm font-semibold mb-2">{event.data.price}</p>
+                )}
+                <LinkButton
+                    href={event.data.registerLink || `/events/${event.slug}`}
+                    class="inline-block px-6 py-2 text-md bg-accent text-white rounded-full font-semibold whitespace-nowrap hover:bg-accent-dark hover:text-white transition-colors duration-200"
+                    ariaLabel={`Register for ${event.data.title}`}
+                    title={`Register for ${event.data.title}`}
+                >
+                    {event.data.registerLink ? 'Register Now' : 'View Details'}
+                </LinkButton>
+            </div>
+          </div>
+
+        )
+      
+      
+      )
+      )}
+    </div>
+  </Main>
+  <Footer />
+</Layout>
