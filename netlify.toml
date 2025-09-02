@@ -1,3 +1,8 @@
 [build]
   publish = "dist"
+  # This command will first tell the shell to use npm and then install dependencies.
   command = "npm install && npm run build"
+
+[build.environment]
+  # This variable explicitly tells Netlify to use npm
+  NPM_VERSION = "10.9.0"
