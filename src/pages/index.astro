@@ -5,7 +5,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import Hr from "@/components/Hr.astro";
-import { SITE } from "@/config";
+// import { SITE } from "@/config";
 
 // NEW: Import the 5 service icon images
 import iconPicnic from '/public/images/icon-picnic.png';
@@ -42,7 +42,7 @@ function formatDate(date: Date): string {
       muted
       loop
       playsinline
-      preload="auto" {/* Preload attribute to help with faster loading */}
+      preload="auto" 
       class="absolute inset-0 w-full h-full object-cover"
       aria-label="Background video of Ngubi Forest activities"
     >
@@ -212,7 +212,7 @@ function formatDate(date: Date): string {
                   {"hidden": index >= 3} /* Initially hide events beyond the first 3 */
                 ]}
                 style={`background-image: url('${event.data.eventImage}');`}
-                data-event-card /* Custom attribute for JS targeting */
+                data-event-card 
               >
                 {/* Opacity Fix: This overlay will work */}
                 <div class="absolute inset-0 event-card-text-overlay"></div> {/* REPLACED bg-black opacity-30 with custom class for fix */}
@@ -231,7 +231,7 @@ function formatDate(date: Date): string {
                       <p class="text-sm font-semibold mb-2 text-white">{event.data.price}</p>
                     )}
                     <LinkButton
-                      // href={event.data.registerLink || `/events/${event.slug}`}
+                      
                       href={event.data.registerLink || `/events/${event.id}`}
                       class="inline-block px-6 py-2 text-md bg-white text-accent rounded-full font-semibold whitespace-nowrap hover:bg-gray-200 hover:text-accent transition-colors duration-200"
                       ariaLabel={`Register for ${event.data.title}`}

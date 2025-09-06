@@ -1,0 +1,86 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Main from "../../layouts/Main.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LinkButton from "../../components/LinkButton.astro";
+
+export async function getStaticPaths() {
+  const allEvents = await getCollection("events", ({ data }) => {
+    return data.draft !== true;
+  });
+
+  return allEvents.map((event) => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}
+
+interface Props {
+  event: CollectionEntry<'events'>;
+}
+
+const { event } = Astro.props;
+const { Content } = await event.render();
+
+function formatDate(date: Date): string {
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+}
+---
+
+<Layout title={`${event.data.title} - Ngubi Adventure Forest Camp`}>
+  <Header />
+  <Main
+    pageTitle={event.data.title}
+    pageDesc={event.data.description}
+    class="bg-surface text-foreground"
+  >
+    <div class="relative w-full h-[50vh] overflow-hidden">
+      {event.data.eventImage && (
+        <img
+          src={event.data.eventImage}
+          alt={event.data.title}
+          class="w-full h-full object-cover"
+        />
+      )}
+      <div class="absolute inset-0 bg-black opacity-40"></div>
+      <div class="absolute inset-0 flex items-center justify-center p-4 text-center">
+        <h1 class="text-4xl sm:text-5xl font-bold text-white leading-tight">
+          {event.data.title}
+        </h1>
+      </div>
+    </div>
+
+    <article class="prose prose-lg dark:prose-invert max-w-app mx-auto px-4 py-12">
+      <div class="mb-8 text-text-muted-dark">
+        <p class="font-bold">
+          {formatDate(event.data.eventDate)}
+          {event.data.eventTime && ` at ${event.data.eventTime}`}
+          {event.data.location && ` | ${event.data.location}`}
+        </p>
+      </div>
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <div class="text-center mt-12">
+        <LinkButton
+          href={event.data.registerLink || "/contact"}
+          class="inline-block px-8 py-4 text-lg bg-accent text-white rounded-full font-semibold whitespace-nowrap hover:bg-accent-dark transition-colors duration-200 shadow-lg"
+          ariaLabel={`Register for ${event.data.title}`}
+          title={`Register for ${event.data.title}`}
+        >
+          {event.data.registerLink ? "Register Now" : "Contact Us"}
+        </LinkButton>
+      </div>
+    </article>
+  </Main>
+  <Footer />
+</Layout>
