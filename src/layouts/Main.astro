@@ -13,7 +13,9 @@ interface ArrayTitleProp {
   pageDesc?: string;
 }
 
-export type Props = StringTitleProp | ArrayTitleProp;
+// export type Props = StringTitleProp | ArrayTitleProp;
+export type Props = HTMLAttributes<'main'> & (StringTitleProp | ArrayTitleProp);
+
 
 const { props } = Astro;
 
