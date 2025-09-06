@@ -249,10 +249,12 @@ function formatDate(date: Date): string {
         {/* Load More Button */}
         {events.length > 3 && (
           <div class="my-8 text-center">
-            <LinkButton id="load-more-events-btn"  class="text-foreground-light-bg"> {/* ADDED text-foreground-light-bg */}
+
+            <LinkButton id="load-more-events-btn" class="text-foreground-light-bg" href="#">
               Load More Events
               <svg class="inline-block ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </LinkButton>
+
           </div>
         )}
       </div> {/* Closing div for max-w-app px-4 */}
@@ -356,7 +358,7 @@ function formatDate(date: Date): string {
   <Footer class="bg-background" /> {/* ADD bg-background to Footer */}
 
 {/* JavaScript for Load More functionality */}
-<script client:load>
+<script>
     function initializeLoadMore() {
         const loadMoreBtn = document.getElementById('load-more-events-btn');
         const eventCards = document.querySelectorAll('[data-event-card]');
